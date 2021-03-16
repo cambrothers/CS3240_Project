@@ -126,9 +126,13 @@ USE_TZ = True
 STATIC_URL = '/static/'
 # Activate Django-Heroku.
 try:
-    # Configure Django App for Heroku.
-    import django_heroku
-    django_heroku.settings(locals())
+    import os
+    if '/app' in os.environ['HOME']:
+        import django_heroku
+        django_heroku.settings(locals())
+    # Configure Django App for Heroku.  commented out to see if above code works for travis build
+    # import django_heroku
+    # django_heroku.settings(locals())
 except ImportError:
     found = False
 
