@@ -29,7 +29,6 @@ ALLOWED_HOSTS = []
 
 
 # Application definition
-
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -42,7 +41,10 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
-    'CS3240_A20'
+    'CS3240_A20',
+    'users',
+    'crispy_forms',
+    
 ]
 
 MIDDLEWARE = [
@@ -125,19 +127,19 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 # Activate Django-Heroku.
-try:
-    import os
-    if '/app' in os.environ['HOME']:
-        import django_heroku
-        django_heroku.settings(locals())
+#try:
+ #   import os
+  #  if '/app' in os.environ['HOME']:
+   #     import django_heroku
+    #    django_heroku.settings(locals())
     # Configure Django App for Heroku.  commented out to see if above code works for travis build
-    # import django_heroku
-    # django_heroku.settings(locals())
-except ImportError:
-    found = False
+import django_heroku
+django_heroku.settings(locals())
+#except ImportError:
+ #   found = False
 
 SITE_ID = 1
-LOGIN_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = 'profile'
 
 SOCIALACCOUNT_PROVIDERS = {
     'google': {

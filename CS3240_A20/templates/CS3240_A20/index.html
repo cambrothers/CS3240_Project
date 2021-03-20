@@ -1,3 +1,4 @@
+{% load crispy_forms_tags %}
 {% load socialaccount %}
 <html>
     <head>
@@ -6,8 +7,38 @@
     <body>
     <h1>My Google Login Project</h1>
     {% if user.is_authenticated %}
-    <p>Welcome, {{ user.username }} !</p>
+
+
+<div class="media-body">
+    <h2 class="account-heading"> {{user.username}}'s Profile </h2>
+        <p class="text-secondary">EMAIL: {{user.email}}</p>
+        <p class="text-secondary">NAME: {{user.userprofile.name}}</p>
+
+    </div>
+<p></p>
+
+    <a href="/accounts/logout">Click here to sign out!</a>
     
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     {% else %}
     <h1>My Google Login Project</h1>
     <a href="{% provider_login_url 'google' %}">Login with Google</a>
