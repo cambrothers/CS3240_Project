@@ -138,7 +138,7 @@ django_heroku.settings(locals())
 #except ImportError:
  #   found = False
 
-SITE_ID = 1
+SITE_ID = 2
 LOGIN_REDIRECT_URL = 'profile'
 
 SOCIALACCOUNT_PROVIDERS = {

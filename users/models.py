@@ -1,19 +1,24 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.db.models.deletion import CASCADE
+
 # Create your models here.
+User._meta.get_field('email')._unique = True
+User._meta.get_field('email').blank = False
+User._meta.get_field('email').null = False
+
 class Profile(models.Model):
     user = models.OneToOneField(User,on_delete=models.CASCADE)
     name = models.CharField(max_length=400)
-    bio = models.CharField(max_length=500)
-    pronouns = models.CharField(max_length=400)
-    age = models.PositiveIntegerField(default=17)
-    year = models.PositiveIntegerField(default=1)
+    bio = models.CharField(max_length=500,blank=True,default="")
+    pronouns = models.CharField(max_length=400,blank=True,default="")
+    age = models.PositiveIntegerField(default=17,blank=True)
+    year = models.PositiveIntegerField(default=1,blank=True)
     class DormChoice(models.TextChoices):
         NONE = "No preference."
         HALL = "Hall-Style"
         SUITE = "Suite-Style"
-    dorm_pref = models.CharField(max_length= 100,choices=DormChoice.choices,default=DormChoice.NONE)
+    dorm_pref = models.CharField(max_length= 100,choices=DormChoice.choices,default=DormChoice.NONE,blank=True)
     class SchoolChoice(models.TextChoices):
         DEFAULT = "default"
         COLLEGE = "College and Graduate School of Arts and Sciences"
@@ -29,8 +34,8 @@ class Profile(models.Model):
         LEADERSHIP = "Frank Batten School of Leadership and Public Policy"
         BUSINESS = "Darden School of Business"
       
-    school = models.CharField(max_length= 500,choices=SchoolChoice.choices,default=SchoolChoice.DEFAULT)
-    roomates = models.PositiveIntegerField(default=0)
+    school = models.CharField(max_length= 500,choices=SchoolChoice.choices,default=SchoolChoice.DEFAULT,blank=True)
+    roomates = models.PositiveIntegerField(default=0,blank=True)
     def __str__(self):
         return f'{self.user.username} Profile'
 
