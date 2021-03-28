@@ -13,7 +13,7 @@
     <h2 class="account-heading"> {{user.username}}'s Profile </h2>
         <p class="text-secondary">EMAIL: {{user.email}}</p>
         <p class="text-secondary">NAME: {{user.profile.name}}</p>
-
+        <img class="rounded-circle account-img" src="{{ user.profile.thumbnail.url }}">
     </div>
 <p></p>
     <a href="/profile">Click here to go to your profile!</a>
