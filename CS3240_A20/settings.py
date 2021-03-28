@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/3.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
-
+import os
 from pathlib import Path
 # import django_heroku   ---- commented out to see if travis wil build
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'CS3240_A20',
     'users',
     'crispy_forms',
+    'imagekit',
     
 ]
 
@@ -126,6 +127,14 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+MEDIA_URL = '/media/'
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+STATICFILES_DIR = (
+    os.path.join(BASE_DIR, 'static'),
+)
+
+
 # Activate Django-Heroku.
 #try:
  #   import os
@@ -138,7 +147,8 @@ django_heroku.settings(locals())
 #except ImportError:
  #   found = False
 
-SITE_ID = 1
+#To work locally SITE_ID should be 2. Althought it was 1 before changing it for local editing.
+SITE_ID = 2
 LOGIN_REDIRECT_URL = 'profile'
 
 SOCIALACCOUNT_PROVIDERS = {

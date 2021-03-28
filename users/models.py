@@ -2,6 +2,10 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.db.models.deletion import CASCADE
 
+#May need to pip install django-imagekit if import statements aren't working. Note imagekit depends on Pillow.
+from imagekit.models import ImageSpecField
+from imagekit.processors import ResizeToFill, SmartResize
+
 # Create your models here.
 User._meta.get_field('email')._unique = True
 User._meta.get_field('email').blank = False
@@ -14,6 +18,10 @@ class Profile(models.Model):
     pronouns = models.CharField(max_length=400,blank=True,default="")
     age = models.PositiveIntegerField(default=17,blank=True)
     year = models.PositiveIntegerField(default=1,blank=True)
+
+    schedule_image = models.ImageField(null=True, blank=True, upload_to="images/")
+    thumbnail = ImageSpecField(source='schedule_image', processors=[ResizeToFill(1000,500)], format='PNG')
+
     class DormChoice(models.TextChoices):
         NONE = "No preference."
         HALL = "Hall-Style"
