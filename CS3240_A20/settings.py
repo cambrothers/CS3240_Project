@@ -45,6 +45,8 @@ INSTALLED_APPS = [
     'users',
     'crispy_forms',
     'imagekit',
+    'cloudinary_storage',
+    'cloudinary',
     
 ]
 
@@ -162,6 +164,12 @@ SOCIALACCOUNT_PROVIDERS = {
         }
     }
 }
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': 'hywygw5dj',
+    'API_KEY': '272347195842429',
+    'API_SECRET': 'NU4-w95QheWRwt6683W2q1ZzlHs',
+}
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
 AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',

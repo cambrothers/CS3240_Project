@@ -2,3 +2,5 @@ Django
 gunicorn
 django-heroku
 django-allauth
+cloudinary==1.17.0
+django-cloudinary-storage==0.2.3
