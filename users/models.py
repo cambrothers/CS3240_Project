@@ -5,6 +5,7 @@ from django.db.models.deletion import CASCADE
 #May need to pip install django-imagekit if import statements aren't working. Note imagekit depends on Pillow.
 from imagekit.models import ImageSpecField
 from imagekit.processors import ResizeToFill, SmartResize
+from PIL import Image
 
 # Create your models here.
 User._meta.get_field('email')._unique = True
@@ -13,6 +14,7 @@ User._meta.get_field('email').null = False
 
 class Profile(models.Model):
     user = models.OneToOneField(User,on_delete=models.CASCADE)
+    image = models.ImageField(default='default.jpg', upload_to='profile_pics')
     name = models.CharField(max_length=400)
     bio = models.CharField(max_length=500,blank=True,default="")
     pronouns = models.CharField(max_length=400,blank=True,default="")
@@ -46,4 +48,17 @@ class Profile(models.Model):
     roomates = models.PositiveIntegerField(default=0,blank=True)
     def __str__(self):
         return f'{self.user.username} Profile'
+
+    # not working right now, but this is supposed to resize the image when there's a new upload to thr profile_img
+    # i think cloudinary has a different method
+    #def save(self):
+        #super().save()
+
+        #img = Image.open(self.image.path)
+
+        #if img.height > 300 or img.width > 300:
+            #output_size = (300, 300)
+            #img.thumbnail(output_size)
+            #img.save(self.image.path)
+
 
