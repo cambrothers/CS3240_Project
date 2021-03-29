@@ -148,7 +148,7 @@ STATICFILES_DIR = (
     #    django_heroku.settings(locals())
     # Configure Django App for Heroku.  commented out to see if above code works for travis build
 import django_heroku
-django_heroku.settings(locals())
+django_heroku.settings(locals(), test_runner = False)
 #except ImportError:
  #   found = False
 
