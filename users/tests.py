@@ -10,7 +10,7 @@ class CreateProfileTest(TestCase):
     """
     Prints that you can continue making your account if a name has been entered
     """
-    def setUp_with_name
+    def setUp_with_name(self):
         create_name = User.objects.create(name="Sarah")
         if (self.assertEqual(create_name, "Sarah"), True):
             print("You can save your account")
@@ -30,7 +30,7 @@ class CreateProfileTest(TestCase):
     def profile_is_unique(self):
         user_name = User.objects.create(name="Sarah")
         user_email = User._meta.get_field('email')._unique
-        if(self.assertEqual(user_email, True)=True):
+        if(self.assertEqual(user_email, True)== True):
             print("You can continue creating an account as you have made an email")
 
     """
@@ -53,8 +53,8 @@ class CreateProfileTest(TestCase):
     def setUp_with_name_email(self):
         create_name = User.objects.create(name="Sarah")
         create_email = User._meta.get_field('email')._unique
-        if ((self.assertEqual(create_email, True)==True) && (self.assertEqual(create_name, "Sarah"),True)):
-            print("You have successfully created your account")
+        if (self.assertEqual(create_email, True)==True):
+            print("You can continue creatng an account as you have entered correct info")
 
     
 
