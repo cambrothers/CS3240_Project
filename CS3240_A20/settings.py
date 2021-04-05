@@ -86,16 +86,9 @@ WSGI_APPLICATION = 'CS3240_A20.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
+import dj_database_url
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'hnhcskjj',
-        'USER': 'hnhcskjj', 
-        'PASSWORD': 'DUwApclx7HeIOr71yaQo9qHDv7XZAVgC',
-        'HOST': 'queenie.db.elephantsql.com',
-        'PORT': '5432',
-        
-    }
+    'default': dj_database_url.config(conn_max_age=600, ssl_require=True)
 }
 
 
