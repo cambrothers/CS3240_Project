@@ -9,3 +9,4 @@ django-crispy-forms
 pillow
 django-utils-six
 psycopg2-binary
+dj-database-url
