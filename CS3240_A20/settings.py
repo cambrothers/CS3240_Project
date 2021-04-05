@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/3.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
-
+import os
 from pathlib import Path
 # import django_heroku   ---- commented out to see if travis wil build
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -29,20 +29,26 @@ ALLOWED_HOSTS = []
 
 
 # Application definition
-
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'django.contrib.staticfiles',
+    
     'django.contrib.sites',
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
-    'CS3240_A20'
+    'CS3240_A20',
+    'users',
+    'crispy_forms',
+    'imagekit',
+    'cloudinary_storage',
+    'django.contrib.staticfiles',
+    'cloudinary',
+    
 ]
 
 MIDDLEWARE = [
@@ -124,20 +130,31 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
-# Activate Django-Heroku.
-try:
-    import os
-    if '/app' in os.environ['HOME']:
-        import django_heroku
-        django_heroku.settings(locals())
-    # Configure Django App for Heroku.  commented out to see if above code works for travis build
-    # import django_heroku
-    # django_heroku.settings(locals())
-except ImportError:
-    found = False
 
-SITE_ID = 1
-LOGIN_REDIRECT_URL = '/'
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
+
+STATICFILES_DIR = (
+    os.path.join(BASE_DIR, 'static'),
+)
+
+
+# Activate Django-Heroku.
+#try:
+ #   import os
+  #  if '/app' in os.environ['HOME']:
+   #     import django_heroku
+    #    django_heroku.settings(locals())
+    # Configure Django App for Heroku.  commented out to see if above code works for travis build
+import django_heroku
+django_heroku.settings(locals(), test_runner = False)
+#except ImportError:
+ #   found = False
+
+#To work locally SITE_ID should be 2. Althought it was 1 before changing it for local editing.
+SITE_ID = 2
+LOGIN_REDIRECT_URL = 'profile'
 
 SOCIALACCOUNT_PROVIDERS = {
     'google': {
@@ -150,6 +167,12 @@ SOCIALACCOUNT_PROVIDERS = {
         }
     }
 }
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': 'hywygw5dj',
+    'API_KEY': '272347195842429',
+    'API_SECRET': 'NU4-w95QheWRwt6683W2q1ZzlHs',
+}
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
 AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
