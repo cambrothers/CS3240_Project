@@ -2,4 +2,4 @@ Django
 gunicorn
 django-heroku
 django-allauth
-django-crispy-forms==1.6.1
+django-crispy-forms==1.9.0
