@@ -1,45 +1,13 @@
-{% load crispy_forms_tags %}
 {% load socialaccount %}
 <html>
     <head>
         <title>Google Registration</title>
     </head>
     <body>
-    <h1>UVA Roomate Finder</h1>
+    <h1>My Google Login Project</h1>
     {% if user.is_authenticated %}
-
-
-<div class="media-body">
-    <h2 class="account-heading"> {{user.username}}'s Profile </h2>
-        <img class="rounded-circle" src="{{user.profile.image.url}}">
-        <p class="text-secondary">EMAIL: {{user.email}}</p>
-        <p class="text-secondary">NAME: {{user.profile.name}}</p>       
-    </div>
-<p></p>
-    <a href="/profile">Click here to go to your profile!</a>
-    <p></p>
-    <a href="/accounts/logout">Click here to sign out!</a>
+    <p>Welcome, {{ user.username }} !</p>
     
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     {% else %}
     <h1>My Google Login Project</h1>
     <a href="{% provider_login_url 'google' %}">Login with Google</a>
