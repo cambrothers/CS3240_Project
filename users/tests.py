@@ -1,8 +1,8 @@
 from django.test import TestCase
 
 from .models import Profile
-from .models import  DormChoice
-from .models import SchoolChoice
+#from .models import  DormChoice
+#from .models import SchoolChoice
 
 # Create your tests here.
 
