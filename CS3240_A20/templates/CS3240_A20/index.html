@@ -15,13 +15,13 @@
     <h2 class="account-heading"> {{user.username}}'s Profile </h2>
     <h2>________________________________________ </h2>
     <h2>Profile Picture: </h2>
-    {% if user.profile.image.url %}
+    {% if user.profile.image %}
     <img  src="{{ user.profile.image.url }}"  alt="{{user.profile.name}}" width="100" height="100">
     {% endif %}
     <p></p>
     <h2>________________________________________ </h2>
     <h2>Class Schedule: </h2>
-    {% if  user.profile.schedule_image.url %}
+    {% if  user.profile.schedule_image %}
     <img  src="{{ user.profile.schedule_image.url }}"  alt="{{user.profile.name}}" width="700" height="200">
     {% endif %}
     <h2>________________________________________ </h2>
