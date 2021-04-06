@@ -1,5 +1,7 @@
 {% load crispy_forms_tags %}
 {% load socialaccount %}
+{% load cloudinary %}
+
 <html>
     <head>
         <title>Google Registration</title>
@@ -11,12 +13,20 @@
 
 <div class="media-body">
     <h2 class="account-heading"> {{user.username}}'s Profile </h2>
-    <img class="rounded-circle account-img" src="{{ user.profile.thumbnail.url }}">
+    <h2>________________________________________ </h2>
+    <h2>Profile Picture: </h2>
+    <img  src="{{ user.profile.image.url }}"  alt="{{user.profile.name}}" width="100" height="100">
+    <p></p>
+    <h2>________________________________________ </h2>
+    <h2>Class Schedule: </h2>
+    <img  src="{{ user.profile.schedule_image.url }}"  alt="{{user.profile.name}}" width="700" height="200">
+    <h2>________________________________________ </h2>
         <p class="text-secondary">EMAIL: {{user.email}}</p>
         <p class="text-secondary">NAME: {{user.profile.name}}</p>
-   
+        <h2>________________________________________ </h2>
     </div>
 <p></p>
+
     <a href="/profile">Click here to go to your profile!</a>
     <p></p>
     <a href="/accounts/logout">Click here to sign out!</a>
