@@ -45,8 +45,8 @@ INSTALLED_APPS = [
     'users',
     'crispy_forms',
     'imagekit',
-    'cloudinary_storage',
     'django.contrib.staticfiles',
+    'cloudinary_storage',
     'cloudinary',
     
 ]
