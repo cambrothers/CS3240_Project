@@ -35,7 +35,7 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'django.contrib.staticfiles',
+
     'django.contrib.sites',
     'allauth',
     'allauth.account',
@@ -45,6 +45,9 @@ INSTALLED_APPS = [
     'users',
     'crispy_forms',
     'imagekit',
+    'cloudinary_storage',
+    'django.contrib.staticfiles',
+    'cloudinary',
     
 ]
 
@@ -127,13 +130,13 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
-MEDIA_URL = '/media/'
+
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 STATICFILES_DIR = (
     os.path.join(BASE_DIR, 'static'),
 )
-
+MEDIA_URL = '/media/'
 
 # Activate Django-Heroku.
 #try:
@@ -143,7 +146,7 @@ STATICFILES_DIR = (
     #    django_heroku.settings(locals())
     # Configure Django App for Heroku.  commented out to see if above code works for travis build
 import django_heroku
-django_heroku.settings(locals())
+django_heroku.settings(locals(), test_runner = False)
 #except ImportError:
  #   found = False
 
@@ -162,6 +165,12 @@ SOCIALACCOUNT_PROVIDERS = {
         }
     }
 }
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': 'hywygw5dj',
+    'API_KEY': '272347195842429',
+    'API_SECRET': 'NU4-w95QheWRwt6683W2q1ZzlHs',
+}
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
 AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
