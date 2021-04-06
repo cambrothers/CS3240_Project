@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 import os
+import cloudinary
 from pathlib import Path
 # import django_heroku   ---- commented out to see if travis wil build
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -45,8 +46,9 @@ INSTALLED_APPS = [
     'users',
     'crispy_forms',
     'imagekit',
-    'cloudinary_storage',
     'django.contrib.staticfiles',
+    'cloudinary_storage',
+ 
     'cloudinary',
     
 ]
@@ -151,7 +153,7 @@ django_heroku.settings(locals(), test_runner = False)
  #   found = False
 
 #To work locally SITE_ID should be 2. Althought it was 1 before changing it for local editing.
-SITE_ID = 1
+SITE_ID = 2
 LOGIN_REDIRECT_URL = 'profile'
 
 SOCIALACCOUNT_PROVIDERS = {
