@@ -3,3 +3,4 @@ gunicorn
 django-heroku
 django-allauth
 django-imagekit==4.0.2
+django-crispy-forms==1.9.0
