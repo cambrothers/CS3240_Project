@@ -14,15 +14,15 @@ User._meta.get_field('email').null = False
 
 class Profile(models.Model):
     user = models.OneToOneField(User,on_delete=models.CASCADE)
-    image = models.ImageField(upload_to="images/",blank=True,default="")
+    image = models.ImageField( upload_to="images/", default="/media/images/blank-profile-picture-973460_1280_jslnqr.png")
     name = models.CharField(max_length=400)
     bio = models.CharField(max_length=500,blank=True,default="")
     pronouns = models.CharField(max_length=400,blank=True,default="")
     age = models.PositiveIntegerField(default=17,blank=True)
     year = models.PositiveIntegerField(default=1,blank=True)
 
-    schedule_image = models.ImageField(upload_to="images/" ,blank=True,default="")
-    thumbnail = ImageSpecField(source='schedule_image', processors=[ResizeToFill(1000,500)], format='PNG')
+    schedule_image = models.ImageField( upload_to="images/",default="media/images/noschedule_zdconk.png")
+   # thumbnail = ImageSpecField(source='schedule_image', processors=[ResizeToFill(1000,500)], format='PNG')
 
     class DormChoice(models.TextChoices):
         NONE = "No preference."

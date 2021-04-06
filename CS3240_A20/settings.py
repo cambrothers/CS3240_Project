@@ -10,7 +10,6 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 import os
-import cloudinary
 from pathlib import Path
 # import django_heroku   ---- commented out to see if travis wil build
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -48,7 +47,6 @@ INSTALLED_APPS = [
     'imagekit',
     'django.contrib.staticfiles',
     'cloudinary_storage',
- 
     'cloudinary',
     
 ]
