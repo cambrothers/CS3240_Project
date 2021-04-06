@@ -14,7 +14,7 @@ User._meta.get_field('email').null = False
 
 class Profile(models.Model):
     user = models.OneToOneField(User,on_delete=models.CASCADE)
-    image = models.ImageField( upload_to="images/", default="/media/images/blank-profile-picture-973460_1280_jslnqr.png")
+    image = models.ImageField( upload_to="images/", default="media/images/noimage_rb51dj.png")
     name = models.CharField(max_length=400)
     bio = models.CharField(max_length=500,blank=True,default="")
     pronouns = models.CharField(max_length=400,blank=True,default="")
