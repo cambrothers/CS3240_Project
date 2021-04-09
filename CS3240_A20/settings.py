@@ -151,7 +151,7 @@ django_heroku.settings(locals(), test_runner = False)
  #   found = False
 
 #To work locally SITE_ID should be 2. Althought it was 1 before changing it for local editing.
-SITE_ID = 2
+SITE_ID = 1
 LOGIN_REDIRECT_URL = 'profile'
 
 SOCIALACCOUNT_PROVIDERS = {
