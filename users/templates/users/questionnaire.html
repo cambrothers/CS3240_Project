@@ -12,7 +12,7 @@
       
         </div>
       </div>
-      {% if user.questionnaire == NONE %}
+      
       <h2 class="account-heading">Make sure that your Profile has been updated before starting the questionnaire!</h2>
       <form method="POST" enctype="multipart/form-data">
           {% csrf_token %}
@@ -25,7 +25,7 @@
             <button class="btn btn-outline-info" type="submit">Update</button>
         </div>
           <body>
-            {% endif %}
+            
             <h2>Here are your results from the questionnaire:</h2>
            
             <p> How many roommates you would like to have:  {{user.questionnaire.number_of_roomates}}</p>
