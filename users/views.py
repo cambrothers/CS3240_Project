@@ -47,7 +47,7 @@ def profile(request):
     #Juliette - 4.8.2021 - adding new view for the questionnaire
 @login_required
 def questionnaire(request):
- if hasattr(request.user,'questionnaire'):
+   if hasattr(request.user,'questionnaire'):
     if request.method == 'POST':
         q_form = QuestionnaireForm(request.POST,instance=request.user.questionnaire)
         if q_form.is_valid():
@@ -60,7 +60,7 @@ def questionnaire(request):
             
         }
              return render(request,'users/questionnaire.html',context) 
- else:
+   else:
        instance = request.user
        Questionnaire.objects.create(user=instance)
        if request.method == 'POST':
