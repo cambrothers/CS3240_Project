@@ -44,12 +44,22 @@ def profile(request):
             'up_form': up_form
         }
       return render(request,'users/profile.html',context) 
-    #Juliette - 4.8.2021 - adding new view for the questionnaire - made it so that if questionnaire has already been taken user is sent to their responses, not another questionnaire
+    #Juliette - 4.8.2021 - adding new view for the questionnaire
 @login_required
 def questionnaire(request):
  if hasattr(request.user,'questionnaire'):
-     return render(request,'users/questionnaire_done.html')
- 
+    if request.method == 'POST':
+        q_form = QuestionnaireForm(request.POST,instance=request.user.questionnaire)
+        if q_form.is_valid():
+            q_form.save()
+            return redirect('questionnaire')
+    else:
+             q_form = QuestionnaireForm(request.POST ,instance=request.user.questionnaire)
+             context = {
+            'q_form' : q_form,
+            
+        }
+             return render(request,'users/questionnaire.html',context) 
  else:
        instance = request.user
        Questionnaire.objects.create(user=instance)
