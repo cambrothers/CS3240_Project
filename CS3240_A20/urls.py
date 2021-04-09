@@ -24,6 +24,9 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('allauth.urls')),
     path('profile/', users_views.profile, name='profile'),
+    # Juliette - 4.8.2021 - New Views
+    path('questionnaire/', users_views.questionnaire, name='questionnaire'),
+    path('questionnaire_done/', TemplateView.as_view(template_name='users/questionnaire_done.html'),name='qd'),
     
 ]
 if settings.DEBUG:

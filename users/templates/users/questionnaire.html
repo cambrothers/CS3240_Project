@@ -7,24 +7,23 @@
        
          <div class="media-body">
            
-          <h2 class="account-heading">{{ user.username }}</h2>
-          <p class="text-secondary">{{ user.email }}</p>
+          <h2 class="account-heading">Roomate Finder Questionnaire</h2>
+          <h2 class="account-heading">Make sure that your Profile has been updated before starting the questionnaire!</h2>
+      
         </div>
       </div>
       <form method="POST" enctype="multipart/form-data">
           {% csrf_token %}
           <fieldset class="form-group">
-              <legend class="border-bottom mb-4">Profile Info</legend>
-              {{ u_form|crispy }}
-              {{ up_form|crispy }}
+              <legend class="border-bottom mb-4">Questions:</legend>
+              {{ q_form|crispy }}
+           
           </fieldset>
           <div class="form-group">
               <button class="btn btn-outline-info" type="submit">Update</button>
           </div>
       </form>
     </div>
+
     <a href="/">Click here to go back to the home page!</a>
-    <p></p>
-    <p>*** PLEASE NOTE - QUESTIONNAIRE CAN ONLY BE TAKEN ONCE AND YOUR PROFILE MUST BE UPDATED BEFORE TAKING IT!*** </p>
-    <a href="/questionnaire">Click here to take the roommate finder questionnaire!</a>
 {% endblock content %}
