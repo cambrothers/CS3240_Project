@@ -8,10 +8,12 @@
          <div class="media-body">
            
           <h2 class="account-heading">Roomate Finder Questionnaire</h2>
-          <h2 class="account-heading">Make sure that your Profile has been updated before starting the questionnaire!</h2>
+         
       
         </div>
       </div>
+      {% if user.questionnaire == NONE %}
+      <h2 class="account-heading">Make sure that your Profile has been updated before starting the questionnaire!</h2>
       <form method="POST" enctype="multipart/form-data">
           {% csrf_token %}
           <fieldset class="form-group">
@@ -20,8 +22,40 @@
            
           </fieldset>
           <div class="form-group">
-              <button class="btn btn-outline-info" type="submit">Update</button>
-          </div>
+            <button class="btn btn-outline-info" type="submit">Update</button>
+        </div>
+          <body>
+            {% endif %}
+            <h2>Here are your results from the questionnaire:</h2>
+           
+            <p> How many roommates you would like to have:  {{user.questionnaire.number_of_roomates}}</p>
+            <p>--------------------------------------------------------------------------------------------------------------------------------------</p>
+            <p> Your dorm preference:  {{user.questionnaire.dorm_pref}}</p>
+            <p>--------------------------------------------------------------------------------------------------------------------------------------</p>
+            <p> Morning/Night Person:  {{user.questionnaire.time_of_day}}</p>
+            <p>--------------------------------------------------------------------------------------------------------------------------------------</p>
+            <p> Clean/Messy Person:  {{user.questionnaire.tidiness}}</p>
+            <p>--------------------------------------------------------------------------------------------------------------------------------------</p>
+            <p> Do you drink or smoke:  {{user.questionnaire.smoke_drink}}</p>
+            <p>--------------------------------------------------------------------------------------------------------------------------------------</p>
+            <p> Thoughts on overnight guests:  {{user.questionnaire.overnight}}</p>
+            <p>--------------------------------------------------------------------------------------------------------------------------------------</p>
+            <p> Your study habits:  {{user.questionnaire.study}}</p>
+            <p>--------------------------------------------------------------------------------------------------------------------------------------</p>
+            <p> Where in Charlottesville/UVA you want to live:  {{user.questionnaire.where}}</p>
+            <p>--------------------------------------------------------------------------------------------------------------------------------------</p>
+            <p> What is your personality type:  {{user.questionnaire.personality}}</p>
+            <p>--------------------------------------------------------------------------------------------------------------------------------------</p>
+            <p> Thoughts on sharing/borrowing items:  {{user.questionnaire.sharing}}</p>
+            <p>--------------------------------------------------------------------------------------------------------------------------------------</p>
+            <p> Living with same/different genders:  {{user.questionnaire.gender}}</p>
+            <p>--------------------------------------------------------------------------------------------------------------------------------------</p>
+            <p> Roomates from same/different year:  {{user.questionnaire.year}}</p>
+            <p>--------------------------------------------------------------------------------------------------------------------------------------</p>
+            <a href="/profile">Click here return to your profile!</a>
+    
+        </body>
+          
       </form>
     </div>
 
