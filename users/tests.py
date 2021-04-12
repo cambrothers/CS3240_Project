@@ -55,10 +55,3 @@ class CreateProfileTest(TestCase):
         create_email = User._meta.get_field('email')._unique
         if (self.assertEqual(create_email, True)==True):
             print("You can continue creatng an account as you have entered correct info")
-
-    
-
-
-
-    
-
