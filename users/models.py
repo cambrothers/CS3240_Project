@@ -145,6 +145,7 @@ class Questionnaire(models.Model):
 
     def matching_set(self):
         #keeps track of the number of matched points
+        matches = {}
         user_set = User.objects.all()
         matching_points = 0
         for u in user_set:
@@ -374,14 +375,35 @@ class Questionnaire(models.Model):
                 if (u.Questionnaire.YearChoice.YES) and (v.Questionnaire.YearChoice.NO):
                     matching_points = matching_points + 1
         #return the total amount of points from the questionnaure
-        return matching_points
 
+                # Joshua Dano - 4/12/21 - Saving matches in a dataset
+                matches[[u, v]] = matching_points
 
+        # Joshua Dano - 4/12/21 - Idea for finding the best match
+        top_3_per_user = {}
+        for user in user_set:
+            top_3 = find_best_match(user, matches)
+            top_3_per_user[user] = top_3
 
+        return top_3_per_user # this will be a dictionary with the key being an individual and the value being a list of the top 3 users
 
+    # pairs = {['josh', 'campbell']: 10, ['abigail', 'josh']: 9, ['abigail', 'campbell']: 15, ['campbell', 'juliette']: 8}
+    # find_best_match('josh', pairs)
+    def find_best_match(user, pairs):
+        matches = {}
+        for pair in pairs:
+                if user in pair: # pair is a list of two users
+                    if user == pair[0]: 
+                        matches[pair[1]] = pairs[pair]
+                    else: 
+                        matches[pair[0]] = pairs[pair]
+        
+        # matches = {'campbell': 10, 'abigail': 11, 'juliette': 6, 'alex': 20}
 
-
-
+        # source: https://stackoverflow.com/questions/40496518/how-to-get-the-3-items-with-the-highest-value-from-dictionary
+        top_3 = sorted(matches, key=matches.get, reverse = True)[:3]
+        
+        return top_3
 
 
 
