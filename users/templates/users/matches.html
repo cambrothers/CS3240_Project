@@ -1,0 +1,28 @@
+{% load crispy_forms_tags %}
+{% block content %}
+{% load cloudinary %}
+
+<!-- Each instance of profile will need it's own array/context of matches to be displayed here and each match
+should be associated with a link the user can click on to see the profile.  -->
+{% for profile in profile_list %}
+  <div class = "Matches">
+    <h2><a href="{% url 'profile_detail' profile.pk %}">{{ profile.name }}</a></h2>
+    
+   
+
+
+  </div>
+
+{% endfor %}
+
+    <h3><a href="{% url 'profile' %}">Click here to go back to profile.</a></h3>
+    <h3><a href="{% url 'home' %}">Click here to go back to home page.</a></h3>
+    
+    
+    
+{% endblock content %}
+
+
+
+
+

@@ -1,0 +1,21 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+gunicorn = "==19.9.0"
+django-heroku = "*"
+django-allauth = "*"
+cloudinary = "==1.17.0"
+django-cloudinary-storage = "==0.2.3"
+django-imagekit = "*"
+django-crispy-forms = "*"
+django-utils-six = "*"
+Django = "~=3.1.0"
+Pillow = "*"
+
+[dev-packages]
+
+[requires]
+python_version = "3.9"

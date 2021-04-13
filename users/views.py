@@ -5,8 +5,12 @@ from django.http import HttpResponseRedirect, HttpResponse
 from django.dispatch import receiver
 from .models import Profile, Questionnaire
 from .forms import UserUpdateForm , UserProfileUpdateForm, QuestionnaireForm
+from django.views.generic import ListView, DetailView
+
 # Create your views here.
 @login_required
+
+
 def profile(request):
    if hasattr(request.user,'profile'):
     if request.method == 'POST':
@@ -75,3 +79,20 @@ def questionnaire(request):
             
         }
              return render(request,'users/questionnaire.html',context)    
+
+
+
+
+
+class MatchesListView(ListView):
+    model = Profile
+    context_object_name = 'profile_list'
+    template_name = 'users/matches.html'
+
+    
+
+
+
+class ProfileDetailView(DetailView):
+    model = Profile
+    template_name = 'users/profileDetail.html'
