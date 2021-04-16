@@ -1,0 +1,69 @@
+{% load crispy_forms_tags %}
+{% block content %}
+{% load cloudinary %}
+{% load static %}
+
+
+
+<div class="media-body">
+    <h2>________________________________________ </h2>
+    <h2>Profile Picture: </h2>
+    {% if profile.image %}
+    <img  src="{{ profile.image.url }}"  alt="{{profile.name}}" width="100" height="100">
+    {% endif %}
+    <p></p>
+    <h2>________________________________________ </h2>
+    
+    <h2>Name: {{ profile.name }}</h2>
+    <h2>Bio: {{ profile.bio }} </h2>
+    <h2>Age: {{ profile.age }} </h2>
+    <h2>Pronouns: {{ profile.Pronouns }} </h2>
+    <h2>Year: {{ profile.year }} </h2>
+    
+    <h2>________________________________________ </h2>
+    <h2>Class Schedule: </h2>
+    {% if  profile.schedule_image %}
+    <img  src="{{ profile.schedule_image.url }}"  alt="{{profile.name}}" width="700" height="200">
+    {% endif %}
+    <h2>________________________________________ </h2>
+    <hr>
+    
+     
+
+    <body>
+        <h2>Questionaire Results:</h2>
+       
+        <p> How many roommates you would like to have:  {{profile.user.questionnaire.number_of_roomates}}</p>
+        <p>--------------------------------------------------------------------------------------------------------------------------------------</p>
+        <p> Your dorm preference:  {{profile.user.questionnaire.dorm_pref}}</p>
+        <p>--------------------------------------------------------------------------------------------------------------------------------------</p>
+        <p> Morning/Night Person:  {{profile.user.questionnaire.time_of_day}}</p>
+        <p>--------------------------------------------------------------------------------------------------------------------------------------</p>
+        <p> Clean/Messy Person:  {{profile.user.questionnaire.tidiness}}</p>
+        <p>--------------------------------------------------------------------------------------------------------------------------------------</p>
+        <p> Do you drink or smoke:  {{profile.user.questionnaire.smoke_drink}}</p>
+        <p>--------------------------------------------------------------------------------------------------------------------------------------</p>
+        <p> Thoughts on overnight guests:  {{profile.user.questionnaire.overnight}}</p>
+        <p>--------------------------------------------------------------------------------------------------------------------------------------</p>
+        <p> Your study habits:  {{profile.user.questionnaire.study}}</p>
+        <p>--------------------------------------------------------------------------------------------------------------------------------------</p>
+        <p> Where in Charlottesville/UVA you want to live:  {{profile.user.questionnaire.where}}</p>
+        <p>--------------------------------------------------------------------------------------------------------------------------------------</p>
+        <p> What is your personality type:  {{profile.user.questionnaire.personality}}</p>
+        <p>--------------------------------------------------------------------------------------------------------------------------------------</p>
+        <p> Thoughts on sharing/borrowing items:  {{profile.user.questionnaire.sharing}}</p>
+        <p>--------------------------------------------------------------------------------------------------------------------------------------</p>
+        <p> Living with same/different genders:  {{profile.user.questionnaire.gender}}</p>
+        <p>--------------------------------------------------------------------------------------------------------------------------------------</p>
+        <p> Roomates from same/different year:  {{profile.user.questionnaire.year}}</p>
+        <p>--------------------------------------------------------------------------------------------------------------------------------------</p>
+
+    </body>
+    
+    
+
+    <h3><a href="/profile">Click here return to your profile page.</a></h3>
+    <h3><a href="{% url 'matches' %}">Click here to return to matches page.</a></h3>
+
+
+{% endblock content %}
