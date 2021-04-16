@@ -23,11 +23,6 @@ User._meta.get_field('email').null = False
 
 
 
-
-
-
-
-
 class Profile(models.Model):
     user = models.OneToOneField(User,on_delete=models.CASCADE)
     
@@ -197,250 +192,189 @@ def matching_set():
             
 
             if(u != v):
-
-                print("u: " + u.questionnaire.number_of_roomates)
-                print("v: " + v.questionnaire.number_of_roomates)
-
-                if (u.questionnaire.number_of_roomates == "Five") and (v.questionaire.number_of_roomates == "Five"): #and  (v.questionnaire.RoomatesChoice.FIVE):
-                    matching_points = matching_points  + 5
-                if (u.questionnaire.number_of_roomates == "Five") and  (v.questionnaire.number_of_roomates == "Four"):
-                    matching_points = matching_points  + 4
-                if (u.questionnaire.number_of_roomates == "Five") and  (v.questionnaire.number_of_roomates == "Three"):
-                    matching_points = matching_points  + 3
-                if (u.questionnaire.number_of_roomates == "Five") and  (v.questionnaire.number_of_roomates == "Two"):
-                    matching_points = matching_points  + 2
-                if (u.questionnaire.number_of_roomates == "Five") and  (v.questionnaire.number_of_roomates == "One"):
-                    matching_points = matching_points  + 1
-                if (u.questionnaire.number_of_roomates == "Five") and  (v.questionnaire.number_of_roomates == "Zero"):
-                    matching_points = matching_points  + 1
-
-                if (u.questionnaire.number_of_roomates == "Four") and  (v.questionnaire.number_of_roomates == "Five"):
-                    matching_points = matching_points  + 4
-                if (u.questionnaire.number_of_roomates == "Four") and  (v.questionnaire.number_of_roomates == "Four"):
-                    matching_points = matching_points  + 5
-                if (u.questionnaire.number_of_roomates == "Four") and  (v.questionnaire.number_of_roomates == "Three"):
-                    matching_points = matching_points  + 4
-                if (u.questionnaire.number_of_roomates == "Four") and  (v.questionnaire.number_of_roomates == "Two"):
-                    matching_points = matching_points  + 3
-                if (u.questionnaire.number_of_roomates == "Four") and  (v.questionnaire.number_of_roomates == "One"):
-                    matching_points = matching_points  + 2
-                if (u.questionnaire.number_of_roomates == "Four") and  (v.questionnaire.number_of_roomates == "Zero"):
-                    matching_points = matching_points  + 1
-
-                if (u.questionnaire.number_of_roomates == "Three") and  (v.questionnaire.number_of_roomates == "Five"):
-                    matching_points = matching_points  + 3
-                if (u.questionnaire.number_of_roomates == "Three") and  (v.questionnaire.number_of_roomates == "Four"):
-                    matching_points = matching_points  + 4
-                if (u.questionnaire.number_of_roomates == "Three") and  (v.questionnaire.number_of_roomates == "Three"):
-                    matching_points = matching_points  + 5
-                if (u.questionnaire.number_of_roomates == "Three") and  (v.questionnaire.number_of_roomates == "Two"):
-                    matching_points = matching_points  + 4
-                if (u.questionnaire.number_of_roomates == "Three") and  (v.questionnaire.number_of_roomates == "One"):
-                    matching_points = matching_points  + 3
-                if (u.questionnaire.number_of_roomates == "Three") and  (v.questionnaire.number_of_roomates == "Zero"):
-                    matching_points = matching_points  + 2
-
-                if (u.questionnaire.number_of_roomates == "Two") and  (v.questionnaire.number_of_roomates == "Five"):
-                    matching_points = matching_points  + 2
-                if (u.questionnaire.number_of_roomates == "Two") and  (v.questionnaire.number_of_roomates == "Four"):
-                    matching_points = matching_points  + 3
-                if (u.questionnaire.number_of_roomates == "Two") and  (v.questionnaire.number_of_roomates == "Three"):
-                    matching_points = matching_points  + 4
-                if (u.questionnaire.number_of_roomates == "Two") and  (v.questionnaire.number_of_roomates == "Two"):
-                    matching_points = matching_points  + 5
-                if (u.questionnaire.number_of_roomates == "Two") and  (v.questionnaire.number_of_roomates == "One"):
-                    matching_points = matching_points  + 4
-                if (u.questionnaire.number_of_roomates == "Two") and  (v.questionnaire.number_of_roomates == "Zero"):
-                    matching_points = matching_points  + 3
-
-                if (u.questionnaire.number_of_roomates == "One") and  (v.questionnaire.number_of_roomates == "Five"):
-                    matching_points = matching_points  + 1
-                if (u.questionnaire.number_of_roomates == "One") and  (v.questionnaire.number_of_roomates == "Four"):
-                    matching_points = matching_points  + 2
-                if (u.questionnaire.number_of_roomates == "One") and  (v.questionnaire.number_of_roomates == "Three"):
-                    matching_points = matching_points  + 3
-                if (u.questionnaire.number_of_roomates == "One") and  (v.questionnaire.number_of_roomates == "Two"):
-                    matching_points = matching_points  + 4
-                if (u.questionnaire.number_of_roomates == "One") and  (v.questionnaire.number_of_roomates == "One"):
-                    matching_points = matching_points  + 5
-                if (u.questionnaire.number_of_roomates == "One") and  (v.questionnaire.number_of_roomates == "Zero"):
-                    matching_points = matching_points  + 4
-                if (u.questionnaire.number_of_roomates == "Zero") and  (v.questionnaire.number_of_roomates == "Five"):
-                    matching_points = matching_points  + 1
-                if (u.questionnaire.number_of_roomates == "Zero") and  (v.questionnaire.number_of_roomates == "Four"):
-                    matching_points = matching_points  + 1
-                if (u.questionnaire.number_of_roomates == "Zero") and  (v.questionnaire.number_of_roomates == "Three"):
-                    matching_points = matching_points  + 2
-                if (u.questionnaire.number_of_roomates == "Zero") and  (v.questionnaire.number_of_roomates == "Two"):
-                    matching_points = matching_points  + 3
-                if (u.questionnaire.number_of_roomates == "Zero") and  (v.questionnaire.number_of_roomates == "One"):
-                    matching_points = matching_points  + 4
-                if (u.questionnaire.number_of_roomates == "Zero") and  (v.questionnaire.number_of_roomates == "Zero"):
-                    matching_points = matching_points  + 5
-                print("HERE: " + str(matching_points))
-               
+                # 4/16/21 - Josh - Slight changes to algorithm
                 
+                # NUMBER OF ROOMMATES
+                # u.questionnaire.number_of_roommates == 5
+                if (u.questionnaire.number_of_roomates == "Five") and (v.questionnaire.number_of_roomates == "Five"): #and  (v.questionnaire.RoomatesChoice.FIVE):
+                    matching_points = matching_points  + 5
+                elif (u.questionnaire.number_of_roomates == "Five") and  (v.questionnaire.number_of_roomates == "Four"):
+                    matching_points = matching_points  + 4
+                elif (u.questionnaire.number_of_roomates == "Five") and  (v.questionnaire.number_of_roomates == "Three"):
+                    matching_points = matching_points  + 3
+                elif (u.questionnaire.number_of_roomates == "Five") and  (v.questionnaire.number_of_roomates == "Two"):
+                    matching_points = matching_points  + 2
+                elif (u.questionnaire.number_of_roomates == "Five") and  (v.questionnaire.number_of_roomates == "One"):
+                    matching_points = matching_points  + 1
+                elif (u.questionnaire.number_of_roomates == "Five") and  (v.questionnaire.number_of_roomates == "Zero"):
+                    matching_points = matching_points  + 1
+
+                # u.questionnaire.number_of_roommates == 4
+                elif (u.questionnaire.number_of_roomates == "Four") and  (v.questionnaire.number_of_roomates == "Five"):
+                    matching_points = matching_points  + 4
+                elif (u.questionnaire.number_of_roomates == "Four") and  (v.questionnaire.number_of_roomates == "Four"):
+                    matching_points = matching_points  + 5
+                elif (u.questionnaire.number_of_roomates == "Four") and  (v.questionnaire.number_of_roomates == "Three"):
+                    matching_points = matching_points  + 4
+                elif (u.questionnaire.number_of_roomates == "Four") and  (v.questionnaire.number_of_roomates == "Two"):
+                    matching_points = matching_points  + 3
+                elif (u.questionnaire.number_of_roomates == "Four") and  (v.questionnaire.number_of_roomates == "One"):
+                    matching_points = matching_points  + 2
+                elif (u.questionnaire.number_of_roomates == "Four") and  (v.questionnaire.number_of_roomates == "Zero"):
+                    matching_points = matching_points  + 1
+
+                # u.questionnaire.number_of_roommates == 3
+                elif (u.questionnaire.number_of_roomates == "Three") and  (v.questionnaire.number_of_roomates == "Five"):
+                    matching_points = matching_points  + 3
+                elif (u.questionnaire.number_of_roomates == "Three") and  (v.questionnaire.number_of_roomates == "Four"):
+                    matching_points = matching_points  + 4
+                elif (u.questionnaire.number_of_roomates == "Three") and  (v.questionnaire.number_of_roomates == "Three"):
+                    matching_points = matching_points  + 5
+                elif (u.questionnaire.number_of_roomates == "Three") and  (v.questionnaire.number_of_roomates == "Two"):
+                    matching_points = matching_points  + 4
+                elif (u.questionnaire.number_of_roomates == "Three") and  (v.questionnaire.number_of_roomates == "One"):
+                    matching_points = matching_points  + 3
+                elif (u.questionnaire.number_of_roomates == "Three") and  (v.questionnaire.number_of_roomates == "Zero"):
+                    matching_points = matching_points  + 2
+
+                # u.questionnaire.number_of_roommates == 2
+                elif (u.questionnaire.number_of_roomates == "Two") and  (v.questionnaire.number_of_roomates == "Five"):
+                    matching_points = matching_points  + 2
+                elif (u.questionnaire.number_of_roomates == "Two") and  (v.questionnaire.number_of_roomates == "Four"):
+                    matching_points = matching_points  + 3
+                elif (u.questionnaire.number_of_roomates == "Two") and  (v.questionnaire.number_of_roomates == "Three"):
+                    matching_points = matching_points  + 4
+                elif (u.questionnaire.number_of_roomates == "Two") and  (v.questionnaire.number_of_roomates == "Two"):
+                    matching_points = matching_points  + 5
+                elif (u.questionnaire.number_of_roomates == "Two") and  (v.questionnaire.number_of_roomates == "One"):
+                    matching_points = matching_points  + 4
+                elif (u.questionnaire.number_of_roomates == "Two") and  (v.questionnaire.number_of_roomates == "Zero"):
+                    matching_points = matching_points  + 3
+
+                # u.questionnaire.number_of_roommates == 1
+                elif (u.questionnaire.number_of_roomates == "One") and  (v.questionnaire.number_of_roomates == "Five"):
+                    matching_points = matching_points  + 1
+                elif (u.questionnaire.number_of_roomates == "One") and  (v.questionnaire.number_of_roomates == "Four"):
+                    matching_points = matching_points  + 2
+                elif (u.questionnaire.number_of_roomates == "One") and  (v.questionnaire.number_of_roomates == "Three"):
+                    matching_points = matching_points  + 3
+                elif (u.questionnaire.number_of_roomates == "One") and  (v.questionnaire.number_of_roomates == "Two"):
+                    matching_points = matching_points  + 4
+                elif (u.questionnaire.number_of_roomates == "One") and  (v.questionnaire.number_of_roomates == "One"):
+                    matching_points = matching_points  + 5
+                elif (u.questionnaire.number_of_roomates == "One") and  (v.questionnaire.number_of_roomates == "Zero"):
+                    matching_points = matching_points  + 4
+
+                # u.questionnaire.number_of_roommates == 0
+                elif (u.questionnaire.number_of_roomates == "Zero") and  (v.questionnaire.number_of_roomates == "Five"):
+                    matching_points = matching_points  + 1
+                elif (u.questionnaire.number_of_roomates == "Zero") and  (v.questionnaire.number_of_roomates == "Four"):
+                    matching_points = matching_points  + 1
+                elif (u.questionnaire.number_of_roomates == "Zero") and  (v.questionnaire.number_of_roomates == "Three"):
+                    matching_points = matching_points  + 2
+                elif (u.questionnaire.number_of_roomates == "Zero") and  (v.questionnaire.number_of_roomates == "Two"):
+                    matching_points = matching_points  + 3
+                elif (u.questionnaire.number_of_roomates == "Zero") and  (v.questionnaire.number_of_roomates == "One"):
+                    matching_points = matching_points  + 4
+                elif (u.questionnaire.number_of_roomates == "Zero") and  (v.questionnaire.number_of_roomates == "Zero"):
+                    matching_points = matching_points  + 5
                
-                #if the same dorm preferences is said, then they have a high chance of matching, matching with no
-                #preference is a normal match, two different styles is almost no points
+                # DORM PREFERENCE
+                # If the same preference, +5. If one doesn't care, +3. If both have different preferences, +1. 
                 if (u.questionnaire.dorm_pref == v.questionnaire.dorm_pref):
-                    matching_points = matching_points + 5
-                if (u.questionnaire.dorm_pref == "No preference.") and (v.questionnaire.dorm_pref == "Hall-Style"):
-                    matching_points = matching_points + 3
-                if (u.questionnaire.dorm_pref == "Hall-Style") and (v.questionnaire.dorm_pref == "No preference."):
-                    matching_points = matching_points + 3
-                if (u.questionnaire.dorm_pref == "No preference.") and (v.questionnaire.dorm_pref == "Suite-Style"):
-                    matching_points = matching_points + 3
-                if (u.questionnaire.dorm_pref == "Suite-Style") and (v.questionnaire.dorm_pref == "No preference."):
-                    matching_points = matching_points + 3
-                if (u.questionnaire.dorm_pref == "Hall-Style") and (v.questionnaire.dorm_pref == "Suite-Style"):
-                    matching_points = matching_points + 1
-                if (u.questionnaire.dorm_pref == "Suite-Style") and (v.questionnaire.dorm_pref == "Hall-Style"):
-                    matching_points = matching_points + 1
-                # Night owls and morning birds that match together [night owl, night owl] or [early bird, early bird]
-                #will match high, either one and a neither will have a decent matching, and mix-matches have a low score
-                if (u.questionnaire.TODChoice.NIGHT) and (v.questionnaire.TODChoice.NIGHT):
-                    matching_points = matching_points + 5
-                if (u.questionnaire.TODChoice.MORNING) and (v.questionnaire.TODChoice.MORNING):
-                    matching_points = matching_points + 5
-                if (u.questionnaire.TODChoice.NIGHT) and (v.questionnaire.TODChoice.NEITHER):
-                    matching_points = matching_points + 3
-                if (u.questionnaire.TODChoice.NEITHER) and (v.questionnaire.TODChoice.NIGHT):
-                    matching_points = matching_points + 3
-                if (u.questionnaire.TODChoice.MORNING) and (v.questionnaire.TODChoice.NEITHER):
-                    matching_points = matching_points + 3
-                if (u.questionnaire.TODChoice.NEITHER) and (v.questionnaire.TODChoice.MORNING):
-                    matching_points = matching_points + 3
-                if (u.questionnaire.TODChoice.NIGHT) and (v.questionnaire.TODChoice.MORNING):
-                    matching_points = matching_points + 1
-                if (u.questionnaire.TODChoice.MORNING) and (v.questionnaire.TODChoice.NIGHT):
-                    matching_points = matching_points + 1
-                # matching is similar to above. Messy and clean people that match together [clean, clean] or [messy,
-                # messy] will match high, either one and a neither will have a decent matching, and mix-matches
-                # #have a low score
-                if (u.questionnaire.TidinessChoice.MESSY) and (v.questionnaire.TidinessChoice.MESSY):
-                    matching_points = matching_points + 5
-                if (u.questionnaire.TidinessChoice.CLEAN) and (v.questionnaire.TidinessChoice.CLEAN):
-                    matching_points = matching_points + 5
-                if (u.questionnaire.TidinessChoice.MESSY) and (v.questionnaire.TidinessChoice.NEITHER):
-                    matching_points = matching_points + 3
-                if (u.questionnaire.TidinessChoice.NEITHER) and (v.questionnaire.TidinessChoice.MESSY):
-                    matching_points = matching_points + 3
-                if (u.questionnaire.TidinessChoice.CLEAN) and (v.questionnaire.TidinessChoice.NEITHER):
-                    matching_points = matching_points + 3
-                if (u.questionnaire.TidinessChoice.NEITHER) and (v.questionnaire.TidinessChoice.CLEAN):
-                    matching_points = matching_points + 3
-                if (u.questionnaire.TidinessChoice.CLEAN) and (v.questionnaire.TidinessChoice.MESSY):
-                    matching_points = matching_points + 1
-                if (u.questionnaire.TidinessChoice.MESSY) and (v.questionnaire.TidinessChoice.CLEAN):
-                    matching_points = matching_points + 1
-                #matching [yes, yes] an [no, no] will have high scores, and mix matches will have low scores
+                    matching_points += 5
+                elif (u.questionnaire.dorm_pref == "No preference.") or (v.questionnaire.dorm_pref == "No preference."):
+                    matching_points += 3
+                else: 
+                    matching_points += 1
+                
+                # SLEEPING HABITS
+                # If the same preference, +5. If one doesn't care, +3. If both have different preferences, +1. 
+                if (u.questionnaire.time_of_day == v.questionnaire.time_of_day):
+                    matching_points += 5
+                elif (u.questionnaire.time_of_day == "Neither a night owl or early bird") or (v.questionnaire.time_of_day == "Neither a night owl or early bird"):
+                    matching_points += 3
+                else:
+                    matching_points += 1
+
+                # TIDINESS
+                # If both the same, +5. If one is centered, +3. If both are different, +1. 
+                if (u.questionnaire.tidiness == v.questionnaire.tidiness):
+                    matching_points += 5
+                elif (u.questionnaire.tidiness == "I'm not overly clean nor messy") or (v.questionnaire.tidiness == "I'm not overly clean nor messy"):
+                    matching_points += 3
+                else:
+                    matching_points += 1
+                
+                # SMOKING & DRINKING
                 if (u.questionnaire.smoke_drink == v.questionnaire.smoke_drink): #and (v.questionnaire.SmokeDrinkChoice.YES):
                     matching_points = matching_points + 5
-                if (u.questionnaire.smoke_drink == v.questionnaire.smoke_drink): #and (v.questionnaire.SmokeDrinkChoice.YES):
+                elif (u.questionnaire.smoke_drink != v.questionnaire.smoke_drink): #and (v.questionnaire.SmokeDrinkChoice.YES):
                     matching_points = matching_points + 1
-                print("u: " + u.questionnaire.smoke_drink)
-                print("v: " + v.questionnaire.smoke_drink)
-                #if (u.questionnaire.SmokeDrinkChoice.NO) and (v.questionnaire.SmokeDrinkChoice.NO):
-                 #   matching_points = matching_points + 5
-                #if (u.questionnaire.SmokeDrinkChoice.YES) and (v.questionnaire.SmokeDrinkChoice.NO):
-                 #   matching_points = matching_points + 1
-                #if (u.questionnaire.SmokeDrinkChoice.NO) and (v.questionnaire.SmokeDrinkChoice.YES):
-                   # matching_points = matching_points + 1
-                # matching [yes, yes] an [no, no] will have high scores, and mix matches will have low scores
-                if (u.questionnaire.OvernightChoice.YES) and (v.questionnaire.OvernightChoice.YES):
+
+                # OVERNIGHT GUESTS
+                if (u.questionnaire.overnight == v.questionnaire.overnight):
                     matching_points = matching_points + 5
-                if (u.questionnaire.OvernightChoice.NO) and (v.questionnaire.OvernightChoice.NO):
+                elif (u.questionnaire.overnight != v.questionnaire.overnight):
+                    matching_points = matching_points + 1
+
+                # NIGHTLIFE
+                if (u.questionnaire.nightlife == v.questionnaire.nightlife):
                     matching_points = matching_points + 5
-                if (u.questionnaire.OvernightChoice.YES) and (v.questionnaire.OvernightChoice.NO):
+                elif (u.questionnaire.nightlife != v.questionnaire.nightlife):
                     matching_points = matching_points + 1
-                if (u.questionnaire.OvernightChoice.NO) and (v.questionnaire.OvernightChoice.YES):
-                    matching_points = matching_points + 1
-                # matching [yes, yes] an [no, no] will have high scores, and mix matches will have low scores
-                if (u.questionnaire.NightlifeChoice.YES) and (v.questionnaire.NightlifeChoice.YES):
-                    matching_points = matching_points + 5
-                if (u.questionnaire.NightlifeChoice.NO) and (v.questionnaire.NightlifeChoice.NO):
-                    matching_points = matching_points + 5
-                if (u.questionnaire.NightlifeChoice.YES) and (v.questionnaire.NightlifeChoice.NO):
-                    matching_points = matching_points + 1
-                if (u.questionnaire.NightlifeChoice.NO) and (v.questionnaire.NightlifeChoice.YES):
-                    matching_points = matching_points + 1
-                # matching [quiet, quiet] an [loud, loud] will have high scores, and mix matches will have low scores
-                if (u.questionnaire.StudyChoice.QUIET) and (v.questionnaire.StudyChoice.QUIET):
-                    matching_points = matching_points + 5
-                if (u.questionnaire.StudyChoice.LOUD) and (v.questionnaire.StudyChoice.QUIET):
-                    matching_points = matching_points + 5
-                if (u.questionnaire.StudyChoice.QUIET) and (v.questionnaire.StudyChoice.LOUD):
-                    matching_points = matching_points + 1
-                if (u.questionnaire.StudyChoice.LOUD) and (v.questionnaire.StudyChoice.QUIET):
-                    matching_points = matching_points + 1
-                # matching is similar to above. Off grounds and on grounds people that match together [on, on] or [off,
-                # off] will match high, either one and a neither will have a decent matching, and mix-matches
-                # #have a low score
-                if (u.questionnaire.WhereChoice.ON_GROUNDS) and (v.questionnaire.WhereChoice.ON_GROUNDS):
-                    matching_points = matching_points + 5
-                if (u.questionnaire.WhereChoice.OFF_GROUNDS) and (v.questionnaire.WhereChoice.OFF_GROUNDS):
-                    matching_points = matching_points + 5
-                if (u.questionnaire.WhereChoice.ON_GROUNDS) and (v.questionnaire.WhereChoice.NO_PREF):
-                    matching_points = matching_points + 3
-                if (u.questionnaire.WhereChoice.NO_PREF) and (v.questionnaire.WhereChoice.ON_GROUNDS):
-                    matching_points = matching_points + 3
-                if (u.questionnaire.WhereChoice.OFF_GROUNDS) and (v.questionnaire.WhereChoice.NO_PREF):
-                    matching_points = matching_points + 3
-                if (u.questionnaire.WhereChoice.NO_PREF) and (v.questionnaire.WhereChoice.OFF_GROUNDS):
-                    matching_points = matching_points + 3
-                if (u.questionnaire.WhereChoice.ON_GROUNDS) and (v.questionnaire.WhereChoice.OFF_GROUNDS):
-                    matching_points = matching_points + 1
-                if (u.questionnaire.WhereChoice.OFF_GROUNDS) and (v.questionnaire.WhereChoice.ON_GROUNDS):
-                    matching_points = matching_points + 1
-                # matching [extrovert, extrovert] an [introvert, introvert] will have high scores, and mix matches will have low scores
-                if (u.questionnaire.PersonalityChoice.EXTROVERT) and (v.questionnaire.PersonalityChoice.EXTROVERT):
-                    matching_points = matching_points + 5
-                if (u.questionnaire.PersonalityChoice.INTROVERT) and (v.questionnaire.PersonalityChoice.INTROVERT):
-                    matching_points = matching_points + 5
-                if (u.questionnaire.PersonalityChoice.INTROVERT) and (v.questionnaire.PersonalityChoice.EXTROVERT):
-                    matching_points = matching_points + 1
-                if (u.questionnaire.PersonalityChoice.EXTROVERT) and (v.questionnaire.PersonalityChoice.INTROVERT):
-                    matching_points = matching_points + 1
-                # matching [yes, yes] an [no, no] will have high scores, and mix matches will have low scores
-                if (u.questionnaire.SharingChoice.YES) and (v.questionnaire.SharingChoice.YES):
-                    matching_points = matching_points + 5
-                if (u.questionnaire.SharingChoice.NO) and (v.questionnaire.SharingChoice.NO):
-                    matching_points = matching_points + 5
-                if (u.questionnaire.SharingChoice.NO) and (v.questionnaire.SharingChoice.YES):
-                    matching_points = matching_points + 1
-                if (u.questionnaire.SharingChoice.YES) and (v.questionnaire.SharingChoice.NO):
-                    matching_points = matching_points + 1
-                # matching [yes, yes] an [no, no] will have high scores, and mix matches will have low scores
-                if (u.questionnaire.GenderChoice.YES) and (v.questionnaire.GenderChoice.YES):
-                    matching_points = matching_points + 5
-                if (u.questionnaire.GenderChoice.NO) and (v.questionnaire.GenderChoice.NO):
-                    matching_points = matching_points + 5
-                if (u.questionnaire.GenderChoice.NO) and (v.questionnaire.GenderChoice.YES):
-                    matching_points = matching_points + 1
-                if (u.questionnaire.GenderChoice.YES) and (v.questionnaire.GenderChoice.NO):
-                    matching_points = matching_points + 1
-                # matching [yes, yes] an [no, no] will have high scores, and mix matches will have low scores
-                if (u.questionnaire.YearChoice.YES) and (v.questionnaire.YearChoice.YES):
-                    matching_points = matching_points + 5
-                if (u.questionnaire.YearChoice.NO) and (v.questionnaire.YearChoice.NO):
-                    matching_points = matching_points + 5
-                if (u.questionnaire.YearChoice.NO) and (v.questionnaire.YearChoice.YES):
-                    matching_points = matching_points + 1
-                if (u.questionnaire.YearChoice.YES) and (v.questionnaire.YearChoice.NO):
-                    matching_points = matching_points + 1
+
+                # STUDY ENVIRONMENTS
+                if (u.questionnaire.study == v.questionnaire.study):
+                    matching_points += 5
+                elif (u.questionnaire.study != v.questionnaire.study):
+                    matching_points += 1 
+                
+                # ON-/OFF-GROUNDS
+                # If the same preference, +5. If one doesn't care, +3. If both have different preferences, +1. 
+                if (u.questionnaire.where == v.questionnaire.where):
+                    matching_points += 5
+                elif (u.questionnaire.where == "I have no preference" or v.questionnaire.where == "I have no preference"):
+                    matching_points += 3
+                else:
+                    matching_points += 1
+
+                # PERSONALITY 
+                if (u.questionnaire.personality == v.questionnaire.personality):
+                    matching_points += 5
+                else:
+                    matching_points += 1
+
+                # SHARING
+                if (u.questionnaire.sharing == v.questionnaire.sharing):
+                    matching_points += 5
+                else:
+                    matching_points += 1
+
+                # ROOMING WITH OTHER GENDERS
+                if (u.questionnaire.gender == v.questionnaire.gender):
+                    matching_points += 5
+                else:
+                    matching_points += 1
+
+                # ROOMING WITH OTHER YEARS
+                if (u.questionnaire.year == v.questionnaire.year):
+                    matching_points += 5
+                else:
+                    matching_points += 1
         #return the total amount of points from the questionnaure
 
                 # Joshua Dano - 4/12/21 - Saving matches in a dataset
                 #matching_points = 10
                 matches[u] = [v, matching_points]
                 matching_points = 0
-    
+                print("v", v)
     
     #matches won't display as a context do not know why.
     #print(matches)
     #print('--------------Now Printing All()--------------')
     #print(User.objects.all())
+    matches = sorted(matches.items(), key=matches.values()[1])
 
     return matches
 
@@ -570,40 +504,40 @@ def matching_set(self):
                 matching_points = matching_points + 1
             # Night owls and morning birds that match together [night owl, night owl] or [early bird, early bird]
             #will match high, either one and a neither will have a decent matching, and mix-matches have a low score
-            if (u.questionnaire.TODChoice.NIGHT) and (v.questionnaire.TODChoice.NIGHT):
+            if (u.questionnaire.time_of_day == "I'm a night owl") and (v.questionnaire.time_of_day == "I'm a night owl"):
                 matching_points = matching_points + 5
-            if (u.questionnaire.TODChoice.MORNING) and (v.questionnaire.TODChoice.MORNING):
+            if (u.questionnaire.time_of_day == "I'm more of a morning person") and (v.questionnaire.time_of_day == "I'm more of a morning person"):
                 matching_points = matching_points + 5
-            if (u.questionnaire.TODChoice.NIGHT) and (v.questionnaire.TODChoice.NEITHER):
+            if (u.questionnaire.time_of_day == "I'm a night owl") and (v.questionnaire.time_of_day == "Neither a night owl or early bird"):
                 matching_points = matching_points + 3
-            if (u.questionnaire.TODChoice.NEITHER) and (v.questionnaire.TODChoice.NIGHT):
+            if (u.questionnaire.time_of_day == "Neither a night owl or early bird") and (v.questionnaire.time_of_day == "I'm a night owl"):
                 matching_points = matching_points + 3
-            if (u.questionnaire.TODChoice.MORNING) and (v.questionnaire.TODChoice.NEITHER):
+            if (u.questionnaire.time_of_day == "I'm more of a morning person") and (v.questionnaire.time_of_day == "Neither a night owl or early bird"):
                 matching_points = matching_points + 3
-            if (u.questionnaire.TODChoice.NEITHER) and (v.questionnaire.TODChoice.MORNING):
+            if (u.questionnaire.time_of_day == "Neither a night owl or early bird") and (v.questionnaire.time_of_day == "I'm more of a morning person"):
                 matching_points = matching_points + 3
-            if (u.questionnaire.TODChoice.NIGHT) and (v.questionnaire.TODChoice.MORNING):
+            if (u.questionnaire.time_of_day == "I'm a night owl") and (v.questionnaire.time_of_day == "I'm more of a morning person"):
                 matching_points = matching_points + 1
-            if (u.questionnaire.TODChoice.MORNING) and (v.questionnaire.TODChoice.NIGHT):
+            if (u.questionnaire.time_of_day == "I'm more of a morning person") and (v.questionnaire.time_of_day == "I'm a night owl"):
                 matching_points = matching_points + 1
             # matching is similar to above. Messy and clean people that match together [clean, clean] or [messy,
             # messy] will match high, either one and a neither will have a decent matching, and mix-matches
             # #have a low score
-            if (u.questionnaire.TidinessChoice.MESSY) and (v.questionnaire.TidinessChoice.MESSY):
+            if (u.questionnaire.tidiness == "I'm a more messy person") and (v.questionnaire.tidiness == "I'm a more messy person"):
                 matching_points = matching_points + 5
-            if (u.questionnaire.TidinessChoice.CLEAN) and (v.questionnaire.TidinessChoice.CLEAN):
+            if (u.questionnaire.tidiness == "I'm more of clean person") and (v.questionnaire.tidiness == "I'm more of clean person"):
                 matching_points = matching_points + 5
-            if (u.questionnaire.TidinessChoice.MESSY) and (v.questionnaire.TidinessChoice.NEITHER):
+            if (u.questionnaire.tidiness == "I'm a more messy person") and (v.questionnaire.tidiness == "I'm not overly clean nor messy"):
                 matching_points = matching_points + 3
-            if (u.questionnaire.TidinessChoice.NEITHER) and (v.questionnaire.TidinessChoice.MESSY):
+            if (u.questionnaire.tidiness == "I'm not overly clean nor messy") and (v.questionnaire.tidiness == "I'm a more messy person"):
                 matching_points = matching_points + 3
-            if (u.questionnaire.TidinessChoice.CLEAN) and (v.questionnaire.TidinessChoice.NEITHER):
+            if (u.questionnaire.tidiness == "I'm more of clean person") and (v.questionnaire.tidiness == "I'm not overly clean nor messy"):
                 matching_points = matching_points + 3
-            if (u.questionnaire.TidinessChoice.NEITHER) and (v.questionnaire.TidinessChoice.CLEAN):
+            if (u.questionnaire.tidiness == "I'm not overly clean nor messy") and (v.questionnaire.tidiness == "I'm more of clean person"):
                 matching_points = matching_points + 3
-            if (u.questionnaire.TidinessChoice.CLEAN) and (v.questionnaire.TidinessChoice.MESSY):
+            if (u.questionnaire.tidiness == "I'm more of clean person") and (v.questionnaire.tidiness == "I'm a more messy person"):
                 matching_points = matching_points + 1
-            if (u.questionnaire.TidinessChoice.MESSY) and (v.questionnaire.TidinessChoice.CLEAN):
+            if (u.questionnaire.tidiness == "I'm a more messy person") and (v.questionnaire.tidiness == "I'm more of clean person"):
                 matching_points = matching_points + 1
             #matching [yes, yes] an [no, no] will have high scores, and mix matches will have low scores
             if (u.questionnaire.SmokeDrinkChoice.YES) and (v.questionnaire.SmokeDrinkChoice.YES):

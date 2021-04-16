@@ -14,9 +14,7 @@
     {% for s in score %}
       {% if s != currentUser %}
       
-      
-
-      <h2><a href="{% url 'profile_detail' user1.profile.id %}">{{ user1 }}</a> Compatibility Score {{s}}/299</h2>
+      <h2><a href="{% url 'profile_detail' user1.profile.id %}">{{ user1 }}</a> Compatibility Score {{s}}/65</h2>
       
       {{user1.questionnaire.room}}
         
