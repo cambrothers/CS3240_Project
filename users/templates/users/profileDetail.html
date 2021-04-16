@@ -8,7 +8,7 @@
 <div class="media-body">
     <h2>________________________________________ </h2>
     <h2>Profile Picture: </h2>
-    {% if user.profile.image %}
+    {% if profile.image %}
     <img  src="{{ profile.image.url }}"  alt="{{profile.name}}" width="100" height="100">
     {% endif %}
     <p></p>
@@ -22,43 +22,40 @@
     
     <h2>________________________________________ </h2>
     <h2>Class Schedule: </h2>
-    {% if  user.profile.schedule_image %}
+    {% if  profile.schedule_image %}
     <img  src="{{ profile.schedule_image.url }}"  alt="{{profile.name}}" width="700" height="200">
     {% endif %}
     <h2>________________________________________ </h2>
     <hr>
     
-     <!--FOR SOME REASON ALL PROFILES DISPLAY THE SAME QUESTIONAIR RESULTS
-    I think there are some logic errors in terms of Profile and User object references.
-    On questionaire if reference user then all profiles have the same questionaire results but if
-    reference profile then there is no data. -->
+     
 
     <body>
         <h2>Questionaire Results:</h2>
        
-        <p> How many roommates you would like to have:  {{user.questionnaire.number_of_roomates}}</p>
+        <p> How many roommates you would like to have:  {{profile.user.questionnaire.number_of_roomates}}</p>
         <p>--------------------------------------------------------------------------------------------------------------------------------------</p>
-        <p> Your dorm preference:  {{user.questionnaire.dorm_pref}}</p>
+        <p> Your dorm preference:  {{profile.user.questionnaire.dorm_pref}}</p>
         <p>--------------------------------------------------------------------------------------------------------------------------------------</p>
-        <p> Morning/Night Person:  {{user.questionnaire.time_of_day}}</p>
+        <p> Morning/Night Person:  {{profile.user.questionnaire.time_of_day}}</p>
         <p>--------------------------------------------------------------------------------------------------------------------------------------</p>
-        <p> Clean/Messy Person:  {{user.questionnaire.tidiness}}</p>
+        <p> Clean/Messy Person:  {{profile.user.questionnaire.tidiness}}</p>
         <p>--------------------------------------------------------------------------------------------------------------------------------------</p>
-        <p> Do you drink or smoke:  {{user.questionnaire.smoke_drink}}</p>
+        <p> Do you drink or smoke:  {{profile.user.questionnaire.smoke_drink}}</p>
         <p>--------------------------------------------------------------------------------------------------------------------------------------</p>
-        <p> Thoughts on overnight guests:  {{user.questionnaire.overnight}}</p>
+        <p> Thoughts on overnight guests:  {{profile.user.questionnaire.overnight}}</p>
         <p>--------------------------------------------------------------------------------------------------------------------------------------</p>
-        <p> Your study habits:  {{user.questionnaire.study}}</p>
+        <p> Your study habits:  {{profile.user.questionnaire.study}}</p>
         <p>--------------------------------------------------------------------------------------------------------------------------------------</p>
-        <p> Where in Charlottesville/UVA you want to live:  {{user.questionnaire.where}}</p>
+        <p> Where in Charlottesville/UVA you want to live:  {{profile.user.questionnaire.where}}</p>
         <p>--------------------------------------------------------------------------------------------------------------------------------------</p>
-        <p> What is your personality type:  {{user.questionnaire.personality}}</p>
+        <p> What is your personality type:  {{profile.user.questionnaire.personality}}</p>
         <p>--------------------------------------------------------------------------------------------------------------------------------------</p>
-        <p> Thoughts on sharing/borrowing items:  {{user.questionnaire.sharing}}</p>
+        <p> Thoughts on sharing/borrowing items:  {{profile.user.questionnaire.sharing}}</p>
         <p>--------------------------------------------------------------------------------------------------------------------------------------</p>
-        <p> Living with same/different genders:  {{user.questionnaire.gender}}</p>
+        <p> Living with same/different genders:  {{profile.user.questionnaire.gender}}</p>
         <p>--------------------------------------------------------------------------------------------------------------------------------------</p>
-        <p> Roomates from same/different year:  {{user.questionnaire.year}}</p>
+        <p> Roomates from same/different year:  {{profile.user.questionnaire.year}}</p>
         <p>--------------------------------------------------------------------------------------------------------------------------------------</p>
 
     </body>
