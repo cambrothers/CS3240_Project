@@ -191,7 +191,7 @@ def matching_set():
             #All scores are the same bc the questionaire saves to be the same for all users.
             
 
-            if(u != v) and hasattr(u,"questionnaire") and hasattr(v,"questionnaire"):
+            if(u != v) and hasattr(u,"questionnaire") and hasattr(v,"questionnaire") and (u.is_superuser or v.is_superuser):
                 # 4/16/21 - Josh - Slight changes to algorithm
                 
                 # NUMBER OF ROOMMATES
