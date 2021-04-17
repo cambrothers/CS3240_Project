@@ -191,7 +191,10 @@ def matching_set():
             #All scores are the same bc the questionaire saves to be the same for all users.
             
 
-            if(u != v) and hasattr(u,"questionnaire") and hasattr(v,"questionnaire") and (( u.is_superuser == False) or ( v.is_superuser == False)):
+            if(u != v) and hasattr(u,"questionnaire") and hasattr(v,"questionnaire"):
+              if (not u.is_superuser) and (not v.is_superuser):
+                print ("u :"+u.username+" is an admin (True/False): "+ str(u.is_superuser))
+                print ("v :"+v.username+" is an admin (True/False): "+ str(v.is_superuser))
                 # 4/16/21 - Josh - Slight changes to algorithm
                 
                 # NUMBER OF ROOMMATES
