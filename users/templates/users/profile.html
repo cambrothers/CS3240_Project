@@ -22,6 +22,21 @@
               <button class="btn btn-outline-info" type="submit">Update</button>
           </div>
       </form>
+      <ul class='all_users'>
+        {% for users in allusers %}
+        {% if not user.is_superuser %}
+        {% if user not in request.user.friends.all != request.user %}
+        <h1>{{user}} <a href="/send_friend_request/{{user.id}}/">send friend request</a></h1>
+        {% endif %}
+        {% endif %}
+        {% endfor %}
+      </ul>
+      {% for friend_request in all_friend_requests %}
+      <h1>{{friend_request.from_user}}
+        <a href="/accept_friend_request/{{friend_request.id}}/">
+          accept friend request</a>
+      </h1>
+        {% endfor %}
     </div>
     <a href="/">Click here to go back to the home page!</a>
     <p></p>

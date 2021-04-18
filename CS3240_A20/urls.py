@@ -20,6 +20,7 @@ from users import views as users_views
 from django.conf import settings 
 from django.conf.urls.static import static
 from users.views import ProfileDetailView ,matchesList #, MatchesListView,
+from users.views import send_friend_request, accept_friend_request
 
 urlpatterns = [
     path('', TemplateView.as_view(template_name='CS3240_A20/index.html'),name='home'),
@@ -32,6 +33,11 @@ urlpatterns = [
     
     path('profile/matches/', matchesList, name='matches'),  
     path('profile/matches/<int:pk>/', ProfileDetailView.as_view(), name='profile_detail'),
+    # Abigail - 4.17.21 - Urls for friend requests
+    path('send_friend_request/<int:userID>/',
+        send_friend_request, name='send friend request'),
+    path('accept_friend_request/<int:requestID>/',
+        accept_friend_request, name='accept friend request')
 ]
 
 

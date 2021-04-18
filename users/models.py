@@ -67,7 +67,17 @@ class Profile(models.Model):
     roomates = models.PositiveIntegerField(default=0,blank=True)
     def __str__(self):
         return f'{self.user.username} Profile'
+    
+    #Abigail - 4.17.21 - ManyToMany friends
+    friends = models.ManyToManyField("Profile", blank=True)
 
+#Abigail - 4.17.21 - Friend Request Model
+class Friend_Request(models.Model):
+    from_user = models.ForeignKey(
+        Profile, related_name='from_user', on_delete=models.CASCADE)
+    to_user = models.ForeignKey(
+        Profile, related_name='to_user', on_delete=models.CASCADE)
+    
 
 #Juliette - 4.8.2021 - Creating a new model for the questionnaire with fields representing each question
 class Questionnaire(models.Model):
