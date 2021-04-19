@@ -11,6 +11,9 @@
           <p class="text-secondary">{{ user.email }}</p>
         </div>
       </div>
+      <h3>**PLEASE NOTE: ONLY USERS THAT YOU HAVE ACCEPTED AS A FRIEND WILL BE ABLE TO VIEW YOUR PHONE NUMBER AND SOCIAL MEDIA HANDLES (IF YOU CHOOSE TO PROVIDE THEM)**</h3>
+      <h3>**IF YOU WISH TO PROVIDE SOCIAL MEDIA HANDLES, DO NOT ADD AN "@" AT THE BEGINNING OF YOUR NAME UNLESS IT IS PART OF THE HANDLE ITSELF!**</h3>
+      <h3>**IF YOU WISH TO ADD YOUR LINKED IN PROFILE, GO TO YOUR PROFILE PAGE ON THE SITE AND COPY THE HYPERLINK FOR IT AND PASTE IT IN THE FIELD!**</h3>
       <form method="POST" enctype="multipart/form-data">
           {% csrf_token %}
           <fieldset class="form-group">
@@ -25,7 +28,7 @@
     </div>
     <a href="/">Click here to go back to the home page!</a>
     <p></p>
-    <p>*** PLEASE NOTE - QUESTIONNAIRE CAN ONLY BE TAKEN ONCE AND YOUR PROFILE MUST BE UPDATED BEFORE TAKING IT!*** </p>
+   
     <a href="/questionnaire">Click here to take the roommate finder questionnaire!</a>
     <p></p>
     <a href="{% url 'matches' %}">Click here view matches!</a>

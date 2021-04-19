@@ -3,11 +3,25 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect, HttpResponse
 from django.dispatch import receiver
-from .models import Profile, Questionnaire
+from .models import Profile, Questionnaire, DiscussionThread
 from .forms import UserUpdateForm , UserProfileUpdateForm, QuestionnaireForm
-from django.views.generic import ListView, DetailView
+from django.views.generic import ListView, DetailView,CreateView
 from django.contrib.auth.models import User
 from django.db.models import Q
+
+class DiscussionView(ListView):
+    model = DiscussionThread
+    template_name = 'users/discussion_board.html'
+class DiscussionDetail(DetailView):
+    model = DiscussionThread
+    template_name = 'users/discussion_board_detail.html'
+class DiscussionCreate(CreateView):
+    model =DiscussionThread
+    fields = ['title','description']
+    def form_valid(self,form):
+        form.instance.author = self.request.user
+        return super().form_valid(form)
+
 
 # Create your views here.
 @login_required

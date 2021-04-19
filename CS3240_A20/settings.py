@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'cloudinary_storage',
     'cloudinary',
+    'phone_field',
     
 ]
 
@@ -176,3 +177,6 @@ AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
     'allauth.account.auth_backends.AuthenticationBackend',
 )
+#Juliette,4.17, added stream keys for messaging
+#STREAM_API_KEY = 'ha8rsuvjxbyc'
+#STREAM_API_SECRET = 'j4j7qnf9crguw7w8c9nby9v6z6ypyqxud3ubfw3yetbnpxwemqxwdsbh9vj5vzjm'

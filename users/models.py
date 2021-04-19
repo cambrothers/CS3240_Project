@@ -2,12 +2,14 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.db.models.deletion import CASCADE
 from CS3240_A20 import settings
+from django.urls import reverse
 
 #May need to pip install django-imagekit if import statements aren't working. Note imagekit depends on Pillow.
 from imagekit.models import ImageSpecField
 from imagekit.processors import ResizeToFill, SmartResize
 from PIL import Image
 from django.db.models import Q
+from phone_field import PhoneField
 
 # Create your models here.
 User._meta.get_field('email')._unique = True
@@ -26,7 +28,10 @@ User._meta.get_field('email').null = False
 class Profile(models.Model):
     user = models.OneToOneField(User,on_delete=models.CASCADE)
     
-
+    phone_number = PhoneField(blank=True,help_text="Enter phone number here")
+    insta_handle = models.CharField(max_length=300,blank=True,default="")
+    twitter_handle = models.CharField(max_length=300,blank=True,default="")
+    linked_in = models.CharField(max_length=300,blank=True,default="")
 
     #questionaire = models.OneToOneField(Questionnaire, on_delete=models.CASCADE)
 
@@ -143,6 +148,13 @@ class Questionnaire(models.Model):
        
     year = models.CharField(max_length= 100,choices=  YearChoice.choices,default=  YearChoice.NO)
 
+class DiscussionThread(models.Model):
+    author = models.CharField(max_length=300,default="")
+    title = models.CharField(max_length=300,default="")
+    description = models.CharField(max_length=500,default="")
+    def get_absolute_url(self):
+        return reverse('discussions_detail',kwargs={'pk': self.pk})
+    
  # not working right now, but this is supposed to resize the image when there's a new upload to thr profile_img
     # i think cloudinary has a different method
     #def save(self):
