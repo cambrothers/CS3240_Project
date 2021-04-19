@@ -1,7 +1,34 @@
 {% load crispy_forms_tags %}
 {% block content %}
 {% load cloudinary %}
+  <head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
+  </head>
+  <div class="media-body">
+    <nav class="navbar navbar-expand-lg navbar-light bg-success">
+        <a class="navbar-brand" href="#">Roommate Finder</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="{% url 'home' %}">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Profile</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'matches' %}">Matches</a>
+            </li>
+
+          </ul>
+          Hi, {{user.username}}! (<a href='/accounts/logout'>sign out</a>)
+          
+        </div>
+      </nav>
     <div class="content-section">
       <div class="media">
        
@@ -52,12 +79,9 @@
             <p>--------------------------------------------------------------------------------------------------------------------------------------</p>
             <p> Roomates from same/different year:  {{user.questionnaire.year}}</p>
             <p>--------------------------------------------------------------------------------------------------------------------------------------</p>
-            <a href="/profile">Click here return to your profile!</a>
     
         </body>
           
       </form>
     </div>
-
-    <a href="/">Click here to go back to the home page!</a>
 {% endblock content %}

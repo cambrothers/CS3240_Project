@@ -5,10 +5,38 @@
 <html>
     <head>
         <title>Google Registration</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     </head>
     <body>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-success">
+        <a class="navbar-brand" href="#">Roommate Finder</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/profile">Profile</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'matches' %}">Matches</a>
+            </li>
+
+          </ul>
+          {% if user.is_authenticated %}
+            Hi, {{user.username}}! (<a href='/accounts/logout'>sign out</a>)
+          {% else %}
+            <a href="{% provider_login_url 'google' %}">Login with Google</a>
+          {% endif %}
+          
+        </div>
+      </nav>
     <h1>UVA Roomate Finder</h1>
-    {% if user.is_authenticated %}
 
 
 <div class="media-body">
@@ -30,35 +58,6 @@
         <h2>________________________________________ </h2>
     </div>
 <p></p>
-
-    <a href="/profile">Click here to go to your profile!</a>
-    <p></p>
-    <a href="/accounts/logout">Click here to sign out!</a>
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    {% else %}
-    <h1>My Google Login Project</h1>
-    <a href="{% provider_login_url 'google' %}">Login with Google</a>
-    {% endif %}
 
     </body>
 </html>
