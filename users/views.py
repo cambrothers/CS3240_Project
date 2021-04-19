@@ -18,6 +18,11 @@ def profile(request):
     if request.method == 'POST':
         u_form = UserUpdateForm(request.POST ,instance=request.user)
         up_form = UserProfileUpdateForm(request.POST,request.FILES,instance=request.user.profile)
+        #Campbell Brothers 4.19.21 Added some test cases to grab the profile
+        allusers = Profile.objects.all()
+        current_profile = get_object_or_404(Profile, user=request.user)
+        print(current_profile)
+        friends = current_profile.friends.all()
         if u_form.is_valid() and up_form.is_valid():
             u_form.save()
             up_form.save()
@@ -26,17 +31,30 @@ def profile(request):
     else:
         u_form = UserUpdateForm(instance=request.user)
         up_form = UserProfileUpdateForm(instance=request.user.profile)
+        #Campbell Brothers 4.19.21 Added some test cases to grab the profile
+        allusers = Profile.objects.all()
+        current_profile = get_object_or_404(Profile, user=request.user)
+        print(current_profile)
+        friends = current_profile.friends.all()
+        #GOAL: iterate through the list of friends, grab the list of friends and display
+        # for friend in friends:
+        #     print(friend)
+
     context = {
         'u_form' : u_form,
-        'up_form': up_form
+        'up_form': up_form,
+        'allusers' : allusers,
+        'current_profile' : current_profile
     }
     return render(request,'users/profile.html',context) 
    else:
       instance = request.user
-      Profile.objects.create(user=instance)
+      # Campbell Brothers 4.19.21 Added some test cases to grab the profile
+      current_profile = Profile.objects.create(user=instance)
       if request.method == 'POST':
             u_form = UserUpdateForm(request.POST ,instance=request.user)
             up_form = UserProfileUpdateForm(request.POST,request.FILES,instance=request.user.profile)
+            allusers = Profile.objects.all()
             if u_form.is_valid() and up_form.is_valid():
                 u_form.save()
                 up_form.save()
@@ -45,9 +63,13 @@ def profile(request):
       else:
             u_form = UserUpdateForm(instance=request.user)
             up_form = UserProfileUpdateForm(instance=request.user.profile)
+            allusers = Profile.objects.all()
       context = {
             'u_form' : u_form,
-            'up_form': up_form
+            'up_form': up_form,
+            'allusers' : allusers,
+            'current_profile' : current_profile
+
         }
       return render(request,'users/profile.html',context) 
 

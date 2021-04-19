@@ -25,12 +25,16 @@
       <p></p>
       <!--Campbell, 4.18.21 Testing to see if the friend function works-->
       <p>This is a test to appear before the friend function</p>
-      <ul class='all_users'>
-        {% for users in allusers %}
-        {% if not user.is_superuser %}
-        {% if user not in request.user.friends.all != request.user %}
+        {% for user in allusers %}
+        {{user.name}}
+        {% if user in current_profile.friends.all %}
         <h1>{{user}} <a href="/send_friend_request/{{user.id}}/">send friend request</a></h1>
         {% endif %}
+        {% endfor %}
+      <ul class='all_users'>
+        {% for users in allusers %}
+        {% if user not in request.user.friends.all != request.user %}
+        <h1>{{user}} <a href="/send_friend_request/{{user.id}}/">send friend request</a></h1>
         {% endif %}
         {% endfor %}
       </ul>
