@@ -27,7 +27,6 @@ class Profile(models.Model):
     user = models.OneToOneField(User,on_delete=models.CASCADE)
     friends = models.ManyToManyField(User,related_name="friends",blank=True)
     requests = models.ManyToManyField(User,related_name="requests",blank=True)
-
     phone_number = models.CharField(max_length=10,blank=True,default="")
     insta_handle = models.CharField(max_length=300,blank=True,default="")
     twitter_handle = models.CharField(max_length=300,blank=True,default="")
