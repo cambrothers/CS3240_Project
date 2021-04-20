@@ -28,7 +28,7 @@ class RequestFriendForm(forms.Form):
     CHOICES = ()
  
     for user in User.objects.all():
-        if not user.is_superuser:
+       # if not user.is_superuser:
             LIST_CHOICES = list(CHOICES)
             LIST_CHOICES.append((user,user))
             CHOICES = tuple(LIST_CHOICES)
@@ -38,7 +38,7 @@ class AcceptDenyForm(forms.Form):
     CHOICES = ()
     DECISION = (('ACCEPT','ACCEPT'),('DECLINE','DECLINE'))
     for user in User.objects.all():
-        if not user.is_superuser:
+     #   if not user.is_superuser:
             LIST_CHOICES = list(CHOICES)
             LIST_CHOICES.append((user,user))
             CHOICES = tuple(LIST_CHOICES)
