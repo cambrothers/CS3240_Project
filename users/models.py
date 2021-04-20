@@ -199,7 +199,7 @@ class DiscussionThread(models.Model):
 
 #Campbell Brothers: 4/11 Adding a matching algorithm to the questionnaire
 
-def matching_set():
+'''def matching_set():
     
     #Now want to do point algo and must return a dictionary that maps user objects to user objects.
     #See if can take the algo already given and apply it with user objects only not strings.
@@ -425,7 +425,6 @@ def matching_set():
 
 
 
-'''
 def matching_set(self):
     #keeps track of the number of matched points
     matches = {}
