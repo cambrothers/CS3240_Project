@@ -1,10 +1,49 @@
 {% load crispy_forms_tags %}
-<br>
-<br>
+{% block content %}
+{% load cloudinary %}
+<head>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
 
+<head>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<div class="media-body">
+  <nav class="navbar navbar-expand-lg navbar-light bg-warning">
+      <a class="navbar-brand" href="#">Roommate Finder</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="{% url 'home' %}">Home <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'profile' %}">Profile</a>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link" href="{% url 'matches' %}">Matches</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'friends_list' %}">Friends</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'discussions' %}">Discussions</a>
+      </li>
+
+        </ul>
+        Hi, {{user.username}}! (<a href='/accounts/logout'>sign out</a>)
+        
+      </div>
+    </nav>
+<br>
+<br>
+<h3>Pending friend requests:</h3>
 {% for profile in all_profiles %}
 {% if  profile.user in user.profile.get_requests %}
-{{profile.user}} -- {{profile.name}}
+<p>User: {{profile.user}} | Name: {{profile.name}}</p>
 <br>
 <br>
 {% endif %}
@@ -17,6 +56,5 @@
     <button name="data" class="btn btn-outline-info" type="submit">Send</button>
     </form>
 
-<br>
-<br>
-<a href="/profile">Click here to go to your profile!</a>
+
+{%endblock%}
