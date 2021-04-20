@@ -27,20 +27,20 @@ class DiscussionForm(forms.ModelForm):
 class RequestFriendForm(forms.Form):
     CHOICES = ()
  
-  #  for user in User.objects.all():
+    for user in User.objects.all():
        # if not user.is_superuser:
-   #         LIST_CHOICES = list(CHOICES)
-    #        LIST_CHOICES.append((user,user))
-     #       CHOICES = tuple(LIST_CHOICES)
+            LIST_CHOICES = list(CHOICES)
+            LIST_CHOICES.append((user,user))
+            CHOICES = tuple(LIST_CHOICES)
     user_to_add = forms.ChoiceField(choices = CHOICES)
 
 class AcceptDenyForm(forms.Form):
     CHOICES = ()
     DECISION = (('ACCEPT','ACCEPT'),('DECLINE','DECLINE'))
-    #for user in User.objects.all():
-     #   if not user.is_superuser:
-     #       LIST_CHOICES = list(CHOICES)
-      #      LIST_CHOICES.append((user,user))
-       #     CHOICES = tuple(LIST_CHOICES)
+    for user in User.objects.all():
+        if not user.is_superuser:
+            LIST_CHOICES = list(CHOICES)
+            LIST_CHOICES.append((user,user))
+            CHOICES = tuple(LIST_CHOICES)
     user_to_add = forms.ChoiceField(choices = CHOICES)
     answer = forms.ChoiceField(choices = DECISION)
