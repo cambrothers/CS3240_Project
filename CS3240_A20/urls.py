@@ -19,7 +19,7 @@ from django.views.generic import TemplateView
 from users import views as users_views
 from django.conf import settings 
 from django.conf.urls.static import static
-from users.views import ProfileDetailView ,matchesList #, MatchesListView,
+from users.views import  FriendCreate, ProfileDetailView, DiscussionView ,matchesList,DiscussionDetail ,DiscussionCreate#, MatchesListView,
 
 urlpatterns = [
     path('', TemplateView.as_view(template_name='CS3240_A20/index.html'),name='home'),
@@ -32,6 +32,13 @@ urlpatterns = [
     
     path('profile/matches/', matchesList, name='matches'),  
     path('profile/matches/<int:pk>/', ProfileDetailView.as_view(), name='profile_detail'),
+    #Juliette - new urls and views for discussion thread and friends
+    path('discussions/' , DiscussionView.as_view() ,name="discussions"),
+    path('discussions/<int:pk>/', DiscussionDetail.as_view(),name='discussions_detail'),
+    path('discussions/new/', DiscussionCreate.as_view(),name='discussions_create'),
+    path('profile/friends', users_views.friends,name='friends_list'),
+    path('profile/friends/add',FriendCreate.as_view(),name='friends_list_new'),
+    path('profile/friends/requests',users_views.friend_req,name='friend_req')
 ]
 
 

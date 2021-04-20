@@ -2,13 +2,15 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.db.models.deletion import CASCADE
 from CS3240_A20 import settings
-
+from django.urls import reverse
+from django.conf import settings
+from django.utils import timezone
 #May need to pip install django-imagekit if import statements aren't working. Note imagekit depends on Pillow.
 from imagekit.models import ImageSpecField
 from imagekit.processors import ResizeToFill, SmartResize
 from PIL import Image
 from django.db.models import Q
-
+from datetime import datetime    
 # Create your models here.
 User._meta.get_field('email')._unique = True
 User._meta.get_field('email').blank = False
@@ -21,12 +23,15 @@ User._meta.get_field('email').null = False
 
 
 
-
-
 class Profile(models.Model):
     user = models.OneToOneField(User,on_delete=models.CASCADE)
-    
+    friends = models.ManyToManyField(User,related_name="friends",blank=True)
+    requests = models.ManyToManyField(User,related_name="requests",blank=True)
 
+    phone_number = models.CharField(max_length=10,blank=True,default="")
+    insta_handle = models.CharField(max_length=300,blank=True,default="")
+    twitter_handle = models.CharField(max_length=300,blank=True,default="")
+    linked_in = models.CharField(max_length=300,blank=True,default="")
 
     #questionaire = models.OneToOneField(Questionnaire, on_delete=models.CASCADE)
 
@@ -65,8 +70,17 @@ class Profile(models.Model):
       
     school = models.CharField(max_length= 500,choices=SchoolChoice.choices,default=SchoolChoice.DEFAULT,blank=True)
     roomates = models.PositiveIntegerField(default=0,blank=True)
+    def get_friends(self):
+        return self.friends.all()
+    def get_requests(self):
+        return self.requests.all()
+    def add_request(self,a):      
+        if not a in self.requests.all():
+            self.requests.add(a)
+    def get_friends_num(self):
+        return self.friends.all().count()
     def __str__(self):
-        return f'{self.user.username} Profile'
+        return f'{self.user.username}'
 
 
 #Juliette - 4.8.2021 - Creating a new model for the questionnaire with fields representing each question
@@ -142,6 +156,18 @@ class Questionnaire(models.Model):
         NO=  "I don't mind rooming with people of different years"
        
     year = models.CharField(max_length= 100,choices=  YearChoice.choices,default=  YearChoice.NO)
+    def __str__(self):
+        return f'{self.user}- Questionnaire'
+# Juliette - making new model for the discussion threads
+class DiscussionThread(models.Model):
+    author = models.CharField(max_length=300,default="")
+    title = models.CharField(max_length=300,default="")
+    description = models.CharField(max_length=500,default="")
+    def get_absolute_url(self):
+        return reverse('discussions_detail',kwargs={'pk': self.pk})
+    def __str__(self):
+        return f'{self.author} - Discussion Thread'
+
 
  # not working right now, but this is supposed to resize the image when there's a new upload to thr profile_img
     # i think cloudinary has a different method

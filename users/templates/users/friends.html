@@ -1,0 +1,42 @@
+{% load crispy_forms_tags %}
+<h3>FRIENDS : {{user.profile.get_friends_num}} 
+    YOUR USERNAME: {{user}}</h3>
+{% for friend in user.profile.get_friends %}
+{{friend}}
+<br>
+{%endfor%}
+
+<h3>People who you are not currently friends with: </h3>
+
+
+{% for profile in all_profiles %}
+{% if not profile.user in user.profile.get_friends and not user in profile.get_friends %}
+{% if not profile.user == user and not profile.user.is_superuser == True  %}
+
+{{profile.user}} -- {{profile.name}}
+
+<br>
+<br>
+{% endif%}
+{% endif%}
+{% endfor%}
+<h3>Find and click select one name at a time to request a friendship with them:</h3>
+<form method="POST" >
+    {% csrf_token %}
+    
+    {{ fr_form|crispy }}
+    
+    <button name="data" class="btn btn-outline-info" type="submit">Send</button>
+    </form>
+
+<br>
+<br>
+<a href="{% url 'friend_req'%}">Click here to add/decline friend requests!</a>
+<h3>Pending friend requests:</h3>
+{% for profile in all_profiles %}
+{% if  profile.user in user.profile.get_requests and not profile.user in user.profile.get_friends %}
+{{profile.user}} -- {{profile.name}}
+<br>
+<br>
+{% endif%}
+{% endfor%}

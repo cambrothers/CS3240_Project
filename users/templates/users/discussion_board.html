@@ -1,0 +1,36 @@
+<head>WELCOME TO THE DISCUSSION BOARD!</head>
+<body>
+    <h4>Here, you can chat with other users about housing-related topics such as subleasing, last-minute roomate searches, etc.</h4>
+    <h4>RULES:</h4>
+   <ul>
+    <li>Do not use any innapropriate language. Any sort of hateful language will result in an automatic deletion of you account.</li>
+    <li>Please keep the topics relavent to the original user's post/request.</li>
+    <li> Purposeful spamming of comments/ blowing up the feed will cause for your posts to be deleted. </li>
+   </ul>
+   <h3>HOW TO USE DISQUS:</h3>
+   <h4>***Disqus is a comment thread that can be accessed by clicking the hyperlink to each thread title below. Please read the instructions below as an author/responder to see how you should use Disqus.***</h4>
+   <ul>
+    <li>If you are the author of a thread, please begin a discussion by entering your username in the "Join the discussion..." text box.</li>
+    <li>If you are someone who wishes to respond to a thread, click on the title. This will redirect you to the thread's details where you should be able to find the authors discussion post with their username.</li>
+    <li>From there, hit reply on the discussion and type your message below. </li>
+   </ul>
+   <h4><a href="{% url 'discussions_create'%}">Click here to create a new thread!</a></h4>
+   <h3>THREADS:</h3>
+<ul>
+   {% for d in object_list %}
+   
+ 
+       <li> <a href="{%url 'discussions_detail' d.pk %}">{{d.title}} </a><br/>
+       </li>
+
+       
+   {% endfor %}    
+</ul>
+</body>
+
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    
+
+    <h3><a href="/profile">Click here return to your profile page.</a></h3>
+  
+    <h3><a href="{% url 'matches' %}">Click here to return to matches page.</a></h3>

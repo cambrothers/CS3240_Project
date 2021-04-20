@@ -27,6 +27,19 @@
     {% endif %}
     <h2>________________________________________ </h2>
     <hr>
+   
+    {% if  profile.user in user.profile.get_friends%}
+    <h2>Social Media / Contact Info: </h2>
+    {% if profile.insta_handle %}
+    <a href="https://instagram.com/{{profile.insta_handle}}"> Instagram</a> 
+    {% endif %}
+    {% if profile.twitter_handle %}
+    <a href="https://twitter.com/{{profile.twitter_handle}}"> Twitter </a> 
+    {% endif %}
+    {% if profile.linked_in %}
+    <a href="{{profile.linked_in}}"> LinkedIn</a> 
+    {% endif %}
+    {% endif %}
     
      
 
@@ -59,11 +72,7 @@
         <p>--------------------------------------------------------------------------------------------------------------------------------------</p>
 
     </body>
-    
-    
 
-    <h3><a href="/profile">Click here return to your profile page.</a></h3>
-    <h3><a href="{% url 'matches' %}">Click here to return to matches page.</a></h3>
-
+    <a href="{% url 'matches' %}">Click here return to your matches!</a>
 
 {% endblock content %}

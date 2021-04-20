@@ -4,7 +4,7 @@
 
 <html>
     <head>
-        <title>Google Registration</title>
+        <title>Home Page</title>
     </head>
     <body>
     <h1>UVA Roomate Finder</h1>
@@ -19,6 +19,7 @@
     <img  src="{{ user.profile.image.url }}"  alt="{{user.profile.name}}" width="100" height="100">
     {% endif %}
     <p></p>
+    <p></p>
     <h2>________________________________________ </h2>
     <h2>Class Schedule: </h2>
     {% if  user.profile.schedule_image %}
@@ -27,10 +28,13 @@
     <h2>________________________________________ </h2>
         <p class="text-secondary">EMAIL: {{user.email}}</p>
         <p class="text-secondary">NAME: {{user.profile.name}}</p>
+       
         <h2>________________________________________ </h2>
     </div>
-<p></p>
 
+    <p></p>
+    <a href="/discussions">Click here to go to the discussions feed!</a>
+    <p></p>
     <a href="/profile">Click here to go to your profile!</a>
     <p></p>
     <a href="/accounts/logout">Click here to sign out!</a>
