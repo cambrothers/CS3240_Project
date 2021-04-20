@@ -4,11 +4,12 @@ from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect, HttpResponse
 from django.dispatch import receiver
 from .models import Profile, Questionnaire, DiscussionThread
-from .forms import UserUpdateForm , UserProfileUpdateForm, QuestionnaireForm
+from .forms import AcceptDenyForm, RequestFriendForm, UserUpdateForm , UserProfileUpdateForm, QuestionnaireForm
 from django.views.generic import ListView, DetailView,CreateView
 from django.contrib.auth.models import User
 from django.db.models import Q
-
+#import request
+import cgi
 class DiscussionView(ListView):
     model = DiscussionThread
     template_name = 'users/discussion_board.html'
@@ -21,8 +22,62 @@ class DiscussionCreate(CreateView):
     def form_valid(self,form):
         form.instance.author = self.request.user
         return super().form_valid(form)
+#Juliette - added views for friends and friend requests
+def friends(request):
 
+    a_p = Profile.objects.all()
+    fr_form = RequestFriendForm(request.POST or None)
+    context = {
+        'all_profiles' :a_p,
+        'fr_form':fr_form,
+         #'data':data
 
+    }
+    if fr_form.is_valid():
+        
+        data = fr_form.cleaned_data["user_to_add"]
+        p = Profile.objects.get(user=request.user)
+        print("P is: "+str(p))
+        d = User.objects.get(username=data)
+        p.requests.add(d)
+        d.profile.requests.add(request.user)
+        #context['data'] = data
+        print(data)
+    return render(request, 'users/friends.html', context)
+
+   
+def friend_req(request):
+   
+    a_p = Profile.objects.all()
+    dec_form = AcceptDenyForm(request.POST or None)
+    context = {
+        'all_profiles' :a_p,
+        'dec_form':dec_form,
+         #'data':data
+
+    }
+    if dec_form.is_valid():
+        
+        u = dec_form.cleaned_data["user_to_add"]
+        a = dec_form.cleaned_data["answer"]
+        p = Profile.objects.get(user=request.user)
+        print("P is: "+str(p))
+        d = User.objects.get(username=u)
+        if a == 'ACCEPT':
+            p.friends.add(d)
+            p.requests.remove(d)
+            d.profile.friends.add(request.user)
+            d.profile.requests.remove(request.user)
+            #context['data'] = u
+            print(u)
+    return render(request, 'users/friend_requests.html', context)
+   
+class FriendCreate(CreateView):
+    model =Profile
+    fields = ['name','requests']
+    def form_valid(self,form):
+        form.instance.user = self.request.user
+        return redirect('friend_req')
 # Create your views here.
 @login_required
 
