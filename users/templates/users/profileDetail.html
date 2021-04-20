@@ -30,6 +30,7 @@
    
     {% if  profile.user in user.profile.get_friends%}
     <h2>Social Media / Contact Info: </h2>
+    <p>Phone number : {{user.profile.phone_number}}</p>
     {% if profile.insta_handle %}
     <a href="https://instagram.com/{{profile.insta_handle}}"> Instagram</a> 
     {% endif %}
