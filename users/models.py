@@ -10,7 +10,6 @@ from imagekit.models import ImageSpecField
 from imagekit.processors import ResizeToFill, SmartResize
 from PIL import Image
 from django.db.models import Q
-from phone_field import PhoneField
 from datetime import datetime    
 # Create your models here.
 User._meta.get_field('email')._unique = True
@@ -28,9 +27,8 @@ class Profile(models.Model):
     user = models.OneToOneField(User,on_delete=models.CASCADE)
     friends = models.ManyToManyField(User,related_name="friends",blank=True)
     requests = models.ManyToManyField(User,related_name="requests",blank=True)
-    updated = models.DateTimeField(auto_now= True)
-    created = models.DateTimeField(auto_now_add=True)
-    phone_number = PhoneField(blank=True,help_text="Enter phone number here")
+
+    phone_number = models.CharField(max_length=10,blank=True,default="")
     insta_handle = models.CharField(max_length=300,blank=True,default="")
     twitter_handle = models.CharField(max_length=300,blank=True,default="")
     linked_in = models.CharField(max_length=300,blank=True,default="")
