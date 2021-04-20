@@ -39,3 +39,5 @@ class ViewTest(unittest.TestCase):
     #     request = self.factory.get('/users/users/profile')
     #     request.user = self.user
 
+class ScheduleTest(unittest.TestCase)
+
