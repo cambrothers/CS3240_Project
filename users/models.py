@@ -199,7 +199,7 @@ class DiscussionThread(models.Model):
 
 #Campbell Brothers: 4/11 Adding a matching algorithm to the questionnaire
 
-'''def matching_set():
+def matching_set():
     
     #Now want to do point algo and must return a dictionary that maps user objects to user objects.
     #See if can take the algo already given and apply it with user objects only not strings.
@@ -217,7 +217,7 @@ class DiscussionThread(models.Model):
             
 
             if(u != v) and hasattr(u,"questionnaire") and hasattr(v,"questionnaire"):
-             # if (not u.is_superuser) and (not v.is_superuser):
+              if (not u.is_superuser) and (not v.is_superuser):
                 print ("u :"+u.username+" is an admin (True/False): "+ str(u.is_superuser))
                 print ("v :"+v.username+" is an admin (True/False): "+ str(v.is_superuser))
                 # 4/16/21 - Josh - Slight changes to algorithm
@@ -425,6 +425,7 @@ class DiscussionThread(models.Model):
 
 
 
+'''
 def matching_set(self):
     #keeps track of the number of matched points
     matches = {}
