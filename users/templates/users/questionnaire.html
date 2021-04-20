@@ -6,7 +6,7 @@
 
   </head>
   <div class="media-body">
-    <nav class="navbar navbar-expand-lg navbar-light bg-success">
+    <nav class="navbar navbar-expand-lg navbar-light bg-warning">
         <a class="navbar-brand" href="#">Roommate Finder</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -18,7 +18,7 @@
               <a class="nav-link" href="{% url 'home' %}">Home <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Profile</a>
+              <a class="nav-link" href="{% url 'profile' %}">Profile</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="{% url 'matches' %}">Matches</a>
@@ -29,59 +29,69 @@
           
         </div>
       </nav>
-    <div class="content-section">
-      <div class="media">
-       
-         <div class="media-body">
-           
-          <h2 class="account-heading">Roomate Finder Questionnaire</h2>
-         
-      
-        </div>
-      </div>
-      
-      <h2 class="account-heading">Make sure that your Profile has been updated before starting the questionnaire!</h2>
-      <form method="POST" enctype="multipart/form-data">
-          {% csrf_token %}
-          <fieldset class="form-group">
-              <legend class="border-bottom mb-4">Questions:</legend>
-              {{ q_form|crispy }}
-           
-          </fieldset>
-          <div class="form-group">
-            <button class="btn btn-outline-info" type="submit">Update</button>
-        </div>
-          <body>
-            
-            <h2>Here are your results from the questionnaire:</h2>
-           
-            <p> How many roommates you would like to have:  {{user.questionnaire.number_of_roomates}}</p>
-            <p>--------------------------------------------------------------------------------------------------------------------------------------</p>
-            <p> Your dorm preference:  {{user.questionnaire.dorm_pref}}</p>
-            <p>--------------------------------------------------------------------------------------------------------------------------------------</p>
-            <p> Morning/Night Person:  {{user.questionnaire.time_of_day}}</p>
-            <p>--------------------------------------------------------------------------------------------------------------------------------------</p>
-            <p> Clean/Messy Person:  {{user.questionnaire.tidiness}}</p>
-            <p>--------------------------------------------------------------------------------------------------------------------------------------</p>
-            <p> Do you drink or smoke:  {{user.questionnaire.smoke_drink}}</p>
-            <p>--------------------------------------------------------------------------------------------------------------------------------------</p>
-            <p> Thoughts on overnight guests:  {{user.questionnaire.overnight}}</p>
-            <p>--------------------------------------------------------------------------------------------------------------------------------------</p>
-            <p> Your study habits:  {{user.questionnaire.study}}</p>
-            <p>--------------------------------------------------------------------------------------------------------------------------------------</p>
-            <p> Where in Charlottesville/UVA you want to live:  {{user.questionnaire.where}}</p>
-            <p>--------------------------------------------------------------------------------------------------------------------------------------</p>
-            <p> What is your personality type:  {{user.questionnaire.personality}}</p>
-            <p>--------------------------------------------------------------------------------------------------------------------------------------</p>
-            <p> Thoughts on sharing/borrowing items:  {{user.questionnaire.sharing}}</p>
-            <p>--------------------------------------------------------------------------------------------------------------------------------------</p>
-            <p> Living with same/different genders:  {{user.questionnaire.gender}}</p>
-            <p>--------------------------------------------------------------------------------------------------------------------------------------</p>
-            <p> Roomates from same/different year:  {{user.questionnaire.year}}</p>
-            <p>--------------------------------------------------------------------------------------------------------------------------------------</p>
+
+      <center>
+        <h1>Roommate Finder Questionnaire</h1>
+        <p>Make sure that your Profile has been updated before starting the questionnaire!</p>
+      </center>
+
+      <div class='container'>
+        <div class="row justify-content-md">
+          <div class='col-md-auto'>
+            <form method="POST" enctype="multipart/form-data">
+              {% csrf_token %}
+              <fieldset class="form-group">
+                  <legend class="border-bottom mb-4">Questions:</legend>
+                  {{ q_form|crispy }}
+               
+              </fieldset>
+              <div class="form-group">
+                <button class="btn btn-outline-info" type="submit">Update</button>
+              </div>
+            </form>
+          </div>
     
-        </body>
-          
-      </form>
+          <div class='col-md-auto'>
+            <legend class="border-bottom mb-4">Your Current Questionnaire Response:</legend>
+             
+            <h5>Number of Roommates:</h5>
+            <p>{{user.questionnaire.number_of_roomates}}</p>
+
+            <h5>Dorm Style Preference:</h5>
+            <p>{{user.questionnaire.dorm_pref}}</p>
+
+            <h5>Morning or Night Person:</h5>
+            <p>{{user.questionnaire.time_of_day}}.</p>
+
+            <h5>Clean or Messy Person:</h5>
+            <p>{{user.questionnaire.tidiness}}.</p>
+
+            <h5>Drink and/or Smoke:</h5>
+            <p>{{user.questionnaire.smoke_drink}} drink or smoke.</p>
+
+            <h5>Overnight guests:</h5>
+            <p>{{user.questionnaire.overnight}}.</p>
+
+            <h5>Study environment:</h5>
+            <p>{{user.questionnaire.study}}.</p>
+
+            <h5>On- or Off-Grounds:</h5>
+            <p>{{user.questionnaire.where}}.</p>
+
+            <h5>Personality type:</h5>
+            <p>{{user.questionnaire.personality}}.</p>
+
+            <h5>Sharing and/or Borrowing Items:</h5>
+            <p>{{user.questionnaire.sharing}}.</p>
+
+            <h5>Living with Different Genders:</h5>
+            <p>{{user.questionnaire.gender}}.</p>
+
+            <h5>Living with People of Different Years:</h5>
+            <p>{{user.questionnaire.year}}.</p>
+          </div>
+
+        </div>
+      </div>   
     </div>
 {% endblock content %}
