@@ -1,10 +1,45 @@
 {% load crispy_forms_tags %}
 {% block content %}
 {% load cloudinary %}
-{% load static %}
+{%load%}
+<head>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
 
+<head>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<div class="media-body">
+  <nav class="navbar navbar-expand-lg navbar-light bg-warning">
+      <a class="navbar-brand" href="#">Roommate Finder</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="{% url 'home' %}">Home <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'profile' %}">Profile</a>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link" href="{% url 'matches' %}">Matches</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'friends_list' %}">Friends</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'discussions' %}">Discussions</a>
+      </li>
 
-
+        </ul>
+        Hi, {{user.username}}! (<a href='/accounts/logout'>sign out</a>)
+        
+      </div>
+    </nav>
+<center>
 <div class="media-body">
     <h2>________________________________________ </h2>
     <h2>Profile Picture: </h2>
@@ -29,7 +64,9 @@
     <hr>
    
     {% if  profile.user in user.profile.get_friends%}
-    <h2>Social Media / Contact Info: </h2>
+    <h2>Social Media / Contact Info (If Provided): </h2>
+    {% endif %}
+    {% if profile.phone_number %}
     <p>Phone number : {{user.profile.phone_number}}</p>
     {% if profile.insta_handle %}
     <a href="https://instagram.com/{{profile.insta_handle}}"> Instagram</a> 
@@ -41,7 +78,7 @@
     <a href="{{profile.linked_in}}"> LinkedIn</a> 
     {% endif %}
     {% endif %}
-    
+
      
 
     <body>
@@ -73,7 +110,7 @@
         <p>--------------------------------------------------------------------------------------------------------------------------------------</p>
 
     </body>
+</center>
 
-    <a href="{% url 'matches' %}">Click here return to your matches!</a>
 
 {% endblock content %}

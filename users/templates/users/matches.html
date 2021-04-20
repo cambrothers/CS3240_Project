@@ -3,47 +3,82 @@
 {% load cloudinary %}
 
 <!-- Returning a dictionary in the template does not display anything -->
+<!-- Returning a dictionary in the template does not display anything -->
+<script>
+  function end(year) {
+    if (year == '1') {
+      return 'st';
+    }
+    else if (year == '2') {
+      return 'nd';
+    }
+    else if (year == '3') {
+      return 'rd';
+    }
+    else if (year == '4') {
+      return 'th';
+    }
+  }
+</script>
 
+<head>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<div class="media-body">
+  <nav class="navbar navbar-expand-lg navbar-light bg-warning">
+      <a class="navbar-brand" href="#">Roommate Finder</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="{% url 'home' %}">Home <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'profile' %}">Profile</a>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link" href="{% url 'matches' %}">Matches</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'friends_list' %}">Friends</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'discussions' %}">Discussions</a>
+      </li>
 
-
-{% for user1, score in user_list.items %}
-
-  
-  
-  <tr>
-    {% for s in score %}
-      {% if s != currentUser %}
-      
-      <h2><a href="{% url 'profile_detail' user1.profile.id %}">{{ user1 }}</a> Compatibility Score {{s}}/65</h2>
-      
-      {{user1.questionnaire.room}}
+        </ul>
+        Hi, {{user.username}}! (<a href='/accounts/logout'>sign out</a>)
         
-        
-      {% endif %}
-    <!--<td>{{users}} </td>-->
+      </div>
+    </nav>
+    <center>
+      <h1>Your Matches</h1>
+      <p>Click on a profile to learn more about them!</p>
+    </center>
+    <hr/>
+
+    <div class='container'>
+    {% for user1, score in user_list.items %}
+
+      <tr>
+        {% for s in score %}
+          {% if s != currentUser %}
+          
+          <h2><a href="{% url 'profile_detail' user1.profile.id %}">{{ user1 }}</a> Compatibility Score {{s}}/65</h2>
+          <p>{{ user1.profile.age }} years old | Year {{ user1.profile.year }} | {{ user1.profile.school }} | Looking for {{ user1.profile.roomates }} roommates</p>
+            
+          {% endif %}
+        {% endfor %}
+      
+        {% for questionnaire in Questionnaire.objects.all %}
+          {{questionnaire.user}}
+        {% endfor %}
+    </tr>
     {% endfor %}
-    
-   
-    {% for questionnaire in Questionnaire.objects.all %}
-      {{questionnaire.user}}
-    {% endfor %}
-    
-  </tr>
-
-
-  
-
-{% endfor %}
-
-
-    <h3><a href="{% url 'profile' %}">Return to profile.</a></h3>
-    <h3><a href="{% url 'home' %}">Return to home page.</a></h3>
-    
-    
     
 {% endblock content %}
-
-
-
-
+    </div>
 

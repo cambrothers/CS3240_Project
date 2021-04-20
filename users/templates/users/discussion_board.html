@@ -1,4 +1,47 @@
-<head>WELCOME TO THE DISCUSSION BOARD!</head>
+{% load crispy_forms_tags %}
+{% load socialaccount %}
+{% load cloudinary %}
+
+<html>
+    <head>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+      </head>
+      <div class="media-body">
+        <nav class="navbar navbar-expand-lg navbar-light bg-warning">
+            <a class="navbar-brand" href="#">Roommate Finder</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+          
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                  <a class="nav-link" href="{% url 'home' %}">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'profile' %}">Profile</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'matches' %}">Matches</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'friends_list' %}">Friends</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'discussions' %}">Discussions</a>
+            </li>
+      
+              </ul>
+              Hi, {{user.username}}! (<a href='/accounts/logout'>sign out</a>)
+              
+            </div>
+          </nav>
+          <center>
+<h2>WELCOME TO THE DISCUSSION BOARD!</h2>
+</center>
+<br>
+<br>
+
 <body>
     <h4>Here, you can chat with other users about housing-related topics such as subleasing, last-minute roomate searches, etc.</h4>
     <h4>RULES:</h4>
@@ -8,7 +51,9 @@
     <li> Purposeful spamming of comments/ blowing up the feed will cause for your posts to be deleted. </li>
    </ul>
    <h3>HOW TO USE DISQUS:</h3>
+   <center>
    <h4>***Disqus is a comment thread that can be accessed by clicking the hyperlink to each thread title below. Please read the instructions below as an author/responder to see how you should use Disqus.***</h4>
+   </center>
    <ul>
     <li>If you are the author of a thread, please begin a discussion by entering your username in the "Join the discussion..." text box.</li>
     <li>If you are someone who wishes to respond to a thread, click on the title. This will redirect you to the thread's details where you should be able to find the authors discussion post with their username.</li>
@@ -29,8 +74,3 @@
 </body>
 
 <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-    
-
-    <h3><a href="/profile">Click here return to your profile page.</a></h3>
-  
-    <h3><a href="{% url 'matches' %}">Click here to return to matches page.</a></h3>

@@ -1,26 +1,69 @@
 {% load crispy_forms_tags %}
-<h3>FRIENDS : {{user.profile.get_friends_num}} 
-    YOUR USERNAME: {{user}}</h3>
+{% block content %}
+{% load cloudinary %}
+<head>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+
+<head>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<div class="media-body">
+  <nav class="navbar navbar-expand-lg navbar-light bg-warning">
+      <a class="navbar-brand" href="#">Roommate Finder</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="{% url 'home' %}">Home <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'profile' %}">Profile</a>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link" href="{% url 'matches' %}">Matches</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'friends_list' %}">Friends</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'discussions' %}">Discussions</a>
+      </li>
+
+        </ul>
+        Hi, {{user.username}}! (<a href='/accounts/logout'>sign out</a>)
+        
+      </div>
+    </nav>
+    <center>
+<h2>
+    YOUR USERNAME: {{user}}</h2>
+</center>
+<h2>FRIENDS : {{user.profile.get_friends_num}} </h2>
 {% for friend in user.profile.get_friends %}
-{{friend}}
+<p>User: {{friend}}| Name: {{friend.profile.name}}</p>
 <br>
+
 {%endfor%}
 
-<h3>People who you are not currently friends with: </h3>
+<h5>People who you are not currently friends with: </h5>
 
 
 {% for profile in all_profiles %}
 {% if not profile.user in user.profile.get_friends and not user in profile.get_friends %}
 {% if not profile.user == user and not profile.user.is_superuser == True  %}
 
-{{profile.user}} -- {{profile.name}}
+<p>User: {{profile.user}} | Name: {{profile.name}}</p>
 
 <br>
 <br>
 {% endif%}
 {% endif%}
 {% endfor%}
-<h3>Find and click select one name at a time to request a friendship with them:</h3>
+<h3>Find And Select One Name at a Time to Request a Friendship with Them:</h3>
 <form method="POST" >
     {% csrf_token %}
     
@@ -35,8 +78,9 @@
 <h3>Pending friend requests:</h3>
 {% for profile in all_profiles %}
 {% if  profile.user in user.profile.get_requests and not profile.user in user.profile.get_friends %}
-{{profile.user}} -- {{profile.name}}
+<p>User: {{profile.user}} | Name: {{profile.name}}</p>
 <br>
 <br>
 {% endif%}
 {% endfor%}
+{%endblock%}
