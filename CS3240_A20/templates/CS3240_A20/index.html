@@ -30,13 +30,18 @@
               <li class="nav-item">
                 <a class="nav-link" href="{% url 'discussions' %}">Discussions</a>
             </li>
-      
-              </ul>
-              Hi, {{user.username}}! (<a href='/accounts/logout'>sign out</a>)
-              
-            </div>
-          </nav>
+            
+          </ul>
           {% if user.is_authenticated %}
+            Hi, {{user.username}}! (<a href='/accounts/logout'>sign out</a>)
+          {% else %}
+            <a href="{% provider_login_url 'google' %}">Login with Google</a>
+          {% endif %}
+          
+        </div>
+      </nav>
+
+      {% if user.is_authenticated %}
       <center><h1>UVA Roommate Finder</h1></center>
 
       <hr/>
@@ -56,6 +61,7 @@
 
         </div>
       </div>
+      {% if user.profile.schedule_image %}
       <div class='container'>
         <div class='row justify-content-md-center'>
           <h2>Class Schedule: </h2>
@@ -64,18 +70,16 @@
 
       <div class='container'>
         <div class='row justify-content-md-center'>
-          {% if user.profile.schedule_image %}
             <img  src="{{ user.profile.schedule_image.url }}"  alt="{{user.profile.name}}" width="auto" height="auto">
           {% endif %}
           </div>
         </div>
       </div>
       {% else %}
-      <h1>My Google Login Project</h1>
-      <a href="{% provider_login_url 'google' %}">Login with Google</a>
+      <center>
+        <h1>Welcome to UVA Roommate Finder!</h1>
+        <p>Please sign in via Google before using our site!</p>
+      </center>
       {% endif %}
-  
-      </body>
-  </html>
     </body>
 </html>
