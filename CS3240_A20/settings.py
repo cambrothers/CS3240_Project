@@ -147,12 +147,12 @@ MEDIA_URL = '/media/'
     #    django_heroku.settings(locals())
     # Configure Django App for Heroku.  commented out to see if above code works for travis build
 import django_heroku
-django_heroku.settings(locals(), test_runner=False)
+django_heroku.settings(locals()) # , test_runner=False)
 #except ImportError:
  #   found = False
 
 #To work locally SITE_ID should be 2. Althought it was 1 before changing it for local editing.
-SITE_ID = 3
+SITE_ID = 2
 LOGIN_REDIRECT_URL = 'profile'
 
 SOCIALACCOUNT_PROVIDERS = {
