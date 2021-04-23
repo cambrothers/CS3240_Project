@@ -36,13 +36,20 @@
               
             </div>
           </nav>
-<form method="POST">
-    {% csrf_token %}
-    <fieldset class="form-group">
-        <legend class="border-bottom mb-4">Create new thread:</legend>
-        {{ form|crispy }}
-    </fieldset>
-    <div class="form-group">
-        <button class="btn btn-outline-info" type="submit">Create</button>
-    </div>
-</form>
+          <center>
+            <h1>Create A New Thread</h1>
+            <p>Start a new thread by filling out the form!</p>
+          </center>
+          <hr/>
+          <div class='container'>
+
+          <form method="POST">
+              {% csrf_token %}
+              <fieldset class="form-group">
+                  {{ form|crispy }}
+              </fieldset>
+              <div class="form-group">
+                  <button class="btn btn-outline-info" type="submit">Create</button>
+              </div>
+          </form>
+          </div>

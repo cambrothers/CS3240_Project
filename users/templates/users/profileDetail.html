@@ -40,75 +40,88 @@
       </div>
     </nav>
 <center>
-<div class="media-body">
-    <h2>________________________________________ </h2>
-    <h2>Profile Picture: </h2>
-    {% if profile.image %}
-    <img  src="{{ profile.image.url }}"  alt="{{profile.name}}" width="100" height="100">
-    {% endif %}
-    <p></p>
-    <h2>________________________________________ </h2>
-    
-    <h2>Name: {{ profile.name }}</h2>
-    <h2>Bio: {{ profile.bio }} </h2>
-    <h2>Age: {{ profile.age }} </h2>
-    <h2>Pronouns: {{ profile.Pronouns }} </h2>
-    <h2>Year: {{ profile.year }} </h2>
-    
-    <h2>________________________________________ </h2>
-    <h2>Class Schedule: </h2>
-    {% if  profile.schedule_image %}
-    <img  src="{{ profile.schedule_image.url }}"  alt="{{profile.name}}" width="700" height="200">
-    {% endif %}
-    <h2>________________________________________ </h2>
-    <hr>
-   
-    {% if  profile.user in user.profile.get_friends%}
-    <h2>Social Media / Contact Info (If Provided): </h2>
-    {% endif %}
-    {% if profile.phone_number %}
-    <p>Phone number : {{user.profile.phone_number}}</p>
-    {% if profile.insta_handle %}
-    <a href="https://instagram.com/{{profile.insta_handle}}"> Instagram</a> 
-    {% endif %}
-    {% if profile.twitter_handle %}
-    <a href="https://twitter.com/{{profile.twitter_handle}}"> Twitter </a> 
-    {% endif %}
-    {% if profile.linked_in %}
-    <a href="{{profile.linked_in}}"> LinkedIn</a> 
-    {% endif %}
-    {% endif %}
 
-     
+  <h1>{{profile.name}}'s Profile</h1>
+  <p>Get to know {{profile.name}}!</p>
+  <hr/>  
+    <div class='container'>
+        <div class="row justify-content-md-center">
+          <div class='col-md-auto'>
+            {% if profile.image %}
+              <img  src="{{ profile.schedule_image.url }}"  alt="{{profile.name}}" width="700" height="200">
+            {% endif %}
+          </div>
+          <div class='col-md-auto'>
+            <h2 class="account-heading"> {{ profile.name }}</h2>
+            <p><b>Email: </b></bEmail:> {{ profile.email }}</p>
+            <p><b>Pronouns: </b>{{ profile.pronouns }}</p>
+            <p><b>Year: </b>{{ profile.year }}</p>
+            {% if  profile.user in user.profile.get_friends%}
+              <h2>Social Media / Contact Info (If Provided): </h2>
+            {% endif %}
+            {% if profile.phone_number %}
+              <p>Phone number : {{user.profile.phone_number}}</p>
+              {% if profile.insta_handle %}
+                <a href="https://instagram.com/{{profile.insta_handle}}">Instagram</a> 
+              {% endif %}
+              {% if profile.twitter_handle %}
+                <a href="https://twitter.com/{{profile.twitter_handle}}"> Twitter </a> 
+              {% endif %}
+              {% if profile.linked_in %}
+                <a href="{{profile.linked_in}}">LinkedIn</a> 
+              {% endif %}
+            {% endif %}
 
+          </div>
+
+        </div>
+      </div>
+      {% if user.profile.schedule_image %}
+      <div class='container'>
+        <div class='row justify-content-md-center'>
+          <h2>Class Schedule: </h2>
+        </div>
+      </div>
+
+      <div class='container'>
+        <div class='row justify-content-md-center'>
+            <img  src="{{ user.profile.schedule_image.url }}"  alt="{{user.profile.name}}" width="auto" height="auto">
+          {% endif %}
+          </div>
+        </div>
+      </div>
+
+<div class="container">
     <body>
         <h2>Questionaire Results:</h2>
        
-        <p> How many roommates you would like to have:  {{profile.user.questionnaire.number_of_roomates}}</p>
+        <p> How many roommates do you want?:  {{profile.user.questionnaire.number_of_roomates}}</p>
         <p>--------------------------------------------------------------------------------------------------------------------------------------</p>
-        <p> Your dorm preference:  {{profile.user.questionnaire.dorm_pref}}</p>
+        <p> What style dorm would you like to live in?:  {{profile.user.questionnaire.dorm_pref}}</p>
         <p>--------------------------------------------------------------------------------------------------------------------------------------</p>
-        <p> Morning/Night Person:  {{profile.user.questionnaire.time_of_day}}</p>
+        <p> Are you a morning or night person?:  {{profile.user.questionnaire.time_of_day}}</p>
         <p>--------------------------------------------------------------------------------------------------------------------------------------</p>
-        <p> Clean/Messy Person:  {{profile.user.questionnaire.tidiness}}</p>
+        <p> Are you a clean or messy roommate?:  {{profile.user.questionnaire.tidiness}}</p>
         <p>--------------------------------------------------------------------------------------------------------------------------------------</p>
-        <p> Do you drink or smoke:  {{profile.user.questionnaire.smoke_drink}}</p>
+        <p> Do you smoke or drink?:  {{profile.user.questionnaire.smoke_drink}}</p>
         <p>--------------------------------------------------------------------------------------------------------------------------------------</p>
-        <p> Thoughts on overnight guests:  {{profile.user.questionnaire.overnight}}</p>
+        <p> Do you like ot go out to the nightlife scene?: {{profile.user.questionnaire.nightlife}}</p>
         <p>--------------------------------------------------------------------------------------------------------------------------------------</p>
-        <p> Your study habits:  {{profile.user.questionnaire.study}}</p>
+        <p> Are you okay with having overnight guests?:  {{profile.user.questionnaire.overnight}}</p>
         <p>--------------------------------------------------------------------------------------------------------------------------------------</p>
-        <p> Where in Charlottesville/UVA you want to live:  {{profile.user.questionnaire.where}}</p>
+        <p> Do you prefer styuding in quiet or loud places?:  {{profile.user.questionnaire.study}}</p>
         <p>--------------------------------------------------------------------------------------------------------------------------------------</p>
-        <p> What is your personality type:  {{profile.user.questionnaire.personality}}</p>
+        <p> Would you like to live on- or off-Grounds?:  {{profile.user.questionnaire.where}}</p>
         <p>--------------------------------------------------------------------------------------------------------------------------------------</p>
-        <p> Thoughts on sharing/borrowing items:  {{profile.user.questionnaire.sharing}}</p>
+        <p> Are you more introverted or extroverted?:  {{profile.user.questionnaire.personality}}</p>
         <p>--------------------------------------------------------------------------------------------------------------------------------------</p>
-        <p> Living with same/different genders:  {{profile.user.questionnaire.gender}}</p>
+        <p> Would you be okay with sharing items with your roommates?:  {{profile.user.questionnaire.sharing}}</p>
         <p>--------------------------------------------------------------------------------------------------------------------------------------</p>
-        <p> Roomates from same/different year:  {{profile.user.questionnaire.year}}</p>
+        <p> Would you be okay with roomming with somebody of another gender?:  {{profile.user.questionnaire.gender}}</p>
         <p>--------------------------------------------------------------------------------------------------------------------------------------</p>
-
+        <p> Would you be okay with roomming with people outside of your year?:  {{profile.user.questionnaire.year}}</p>
+        <p>--------------------------------------------------------------------------------------------------------------------------------------</p>
+    </div>
     </body>
 </center>
 
