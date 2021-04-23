@@ -404,7 +404,7 @@ def matching_set():
     #print(User.objects.all())
     #matches = sorted(matches.items(), key=matches.values()[1])
 
-    return user_set
+    return matches
 
 
 
