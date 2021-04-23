@@ -36,12 +36,13 @@
               
             </div>
           </nav>
-          
+          <center>
+            <h1>Discussion Board</h1>
+            <p>Please read the following rules on how to use the discussion board!</p>
+          </center>
+          <hr/>
           <div class='container'>
             <div class='row justify-content-md-center'>
-              <center>
-                <h2>WELCOME TO THE DISCUSSION BOARD!</h2>
-              </center>
               <br>
               <br>
               
@@ -62,19 +63,20 @@
                   <li>If you are someone who wishes to respond to a thread, click on the title. This will redirect you to the thread's details where you should be able to find the authors discussion post with their username.</li>
                   <li>From there, hit reply on the discussion and type your message below. </li>
                  </ul>
-                 <h4><a href="{% url 'discussions_create'%}">Click here to create a new thread!</a></h4><br/><br/><br/>
-                 <h3>THREADS:</h3>
+                 <h4><a href="{% url 'discussions_create'%}">Click here to create a new thread!</a></h4>
+                 </div>
+                 <center><h3>THREADS:</h3></center>
               <ul>
                  {% for d in object_list %}
                  
                
                      <li> <a href="{%url 'discussions_detail' d.pk %}">{{d.title}} </a><br/>
                      </li>
-              
                      
                  {% endfor %}    
               </ul>
               </body>
+
               
             </div>
           </div>

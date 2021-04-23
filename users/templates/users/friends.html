@@ -39,48 +39,53 @@
       </div>
     </nav>
     <center>
-<h2>
-    YOUR USERNAME: {{user}}</h2>
+  <h1>{{user}}'s Friends</h1>
+  <p>Below are your friends and suggested friends!</p>
+  <hr/>
 </center>
-<h2>FRIENDS : {{user.profile.get_friends_num}} </h2>
-{% for friend in user.profile.get_friends %}
-<p>User: {{friend}}| Name: {{friend.profile.name}}</p>
-<br>
 
-{%endfor%}
+<div class='container'>
 
-<h5>People who you are not currently friends with: </h5>
+  <h2>FRIENDS : {{user.profile.get_friends_num}} </h2>
+  {% for friend in user.profile.get_friends %}
+  <p>User: {{friend}}| Name: {{friend.profile.name}}</p>
+  <br>
+
+  {%endfor%}
+
+  <h5>People who you are not currently friends with: </h5>
 
 
-{% for profile in all_profiles %}
-{% if not profile.user in user.profile.get_friends and not user in profile.get_friends %}
-{% if not profile.user == user and not profile.user.is_superuser == True  %}
+  {% for profile in all_profiles %}
+  {% if not profile.user in user.profile.get_friends and not user in profile.get_friends %}
+  {% if not profile.user == user and not profile.user.is_superuser == True  %}
 
-<p>User: {{profile.user}} | Name: {{profile.name}}</p>
+  <p>User: {{profile.user}} | Name: {{profile.name}}</p>
 
-<br>
-<br>
-{% endif%}
-{% endif%}
-{% endfor%}
-<h3>Find And Select One Name at a Time to Request a Friendship with Them:</h3>
-<form method="POST" >
-    {% csrf_token %}
-    
-    {{ fr_form|crispy }}
-    
-    <button name="data" class="btn btn-outline-info" type="submit">Send</button>
-    </form>
+  <br>
+  <br>
+  {% endif%}
+  {% endif%}
+  {% endfor%}
+  <h3>Find And Select One Name at a Time to Request a Friendship with Them:</h3>
+  <form method="POST" >
+      {% csrf_token %}
+      
+      {{ fr_form|crispy }}
+      
+      <button name="data" class="btn btn-outline-info" type="submit">Send</button>
+      </form>
 
-<br>
-<br>
-<a href="{% url 'friend_req'%}">Click here to add/decline friend requests!</a>
-<h3>Pending friend requests:</h3>
-{% for profile in all_profiles %}
-{% if  profile.user in user.profile.get_requests and not profile.user in user.profile.get_friends %}
-<p>User: {{profile.user}} | Name: {{profile.name}}</p>
-<br>
-<br>
-{% endif%}
-{% endfor%}
-{%endblock%}
+  <br>
+  <br>
+  <a href="{% url 'friend_req'%}">Click here to add/decline friend requests!</a>
+  <h3>Pending friend requests:</h3>
+  {% for profile in all_profiles %}
+  {% if  profile.user in user.profile.get_requests and not profile.user in user.profile.get_friends %}
+  <p>User: {{profile.user}} | Name: {{profile.name}}</p>
+  <br>
+  <br>
+  {% endif%}
+  {% endfor%}
+  {%endblock%}
+  </div>
