@@ -12,14 +12,14 @@
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
             </button>
-          
+            {% if user.is_authenticated %}
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
               <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                  <a class="nav-link" href="{% url 'home' %}">Home <span class="sr-only">(current)</span></a>
+                  <a class="nav-link" href="{% url 'home' %}" aria-disabled="true">Home <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="{% url 'profile' %}">Profile</a>
+                  <a class="nav-link" href="{% url 'profile' %}" aria-disabled="true">Profile</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'matches' %}">Matches</a>
@@ -32,9 +32,26 @@
             </li>
             
           </ul>
-          {% if user.is_authenticated %}
             Hi, {{user.username}}! (<a href='/accounts/logout'>sign out</a>)
           {% else %}
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+              <li class="nav-item active">
+                <a class="nav-link" href="{% provider_login_url 'google' %}" aria-disabled="true">Home <span class="sr-only">(current)</span></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% provider_login_url 'google' %}" aria-disabled="true">Profile</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="{% provider_login_url 'google' %}">Matches</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% provider_login_url 'google' %}">Friends</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% provider_login_url 'google' %}">Discussions</a>
+          </li>
+          </ul>
             <a href="{% provider_login_url 'google' %}">Login with Google</a>
           {% endif %}
           
@@ -42,8 +59,10 @@
       </nav>
 
       {% if user.is_authenticated %}
-      <center><h1>UVA Roommate Finder</h1></center>
-
+      <center>
+        <h1>UVA Roommate Finder</h1>
+        <p>Below are some of your profile details!</p>
+      </center>
       <hr/>
       <div class='container'>
         <div class="row justify-content-md-center">
@@ -78,7 +97,7 @@
       {% else %}
       <center>
         <h1>Welcome to UVA Roommate Finder!</h1>
-        <p>Please sign in via Google before using our site!</p>
+        <p>Please <a href="{% provider_login_url 'google' %}">log in with Google</a> before using our site!</p>
       </center>
       {% endif %}
     </body>
