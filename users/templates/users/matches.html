@@ -56,13 +56,12 @@
     </nav>
     <center>
       <h1>Your Matches</h1>
-      <p>Click on a profile to learn more about them!</p>
+      <p>Click on a profile to learn more about them! Please make sure your <a href="{% url 'questionnaire' %}">questionnaire</a> is up-to-date to ensure accurate scores! </p>
     </center>
     <hr/>
 
     <div class='container'>
     {% for user1, score in user_list.items %}
-        {{user1}}
       <tr>
         {% for s in score %}
           {% if s != currentUser %}
