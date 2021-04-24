@@ -52,7 +52,7 @@ class QuestionnaireForm(forms.ModelForm):
             'personality': 'Are you more introverted or extroverted?',
             'sharing': 'Would you be okay with sharing items with your roommates?',
             'gender': 'Would you be okay with roomming with somebody of another gender?',
-            'year': 'Would you be okay with roomming with people outside of your year?'
+            'year': 'Do you only want roommates that are the same year as you?'
         }
 
 class DiscussionForm(forms.ModelForm):
