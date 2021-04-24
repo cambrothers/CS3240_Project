@@ -30,7 +30,7 @@ urlpatterns = [
     path('questionnaire/', users_views.questionnaire, name='questionnaire'),
     path('questionnaire_done/', TemplateView.as_view(template_name='users/questionnaire_done.html'),name='qd'),
     
-    path('profile/matches/', matchesList, name='matches'),  
+    path('profile/matches/', users_views.matchesList, name='matches'),  
     path('profile/matches/<int:pk>/', ProfileDetailView.as_view(), name='profile_detail'),
     #Juliette - new urls and views for discussion thread and friends
     path('discussions/' , DiscussionView.as_view() ,name="discussions"),
