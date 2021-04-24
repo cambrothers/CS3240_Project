@@ -48,7 +48,7 @@
         <div class="row justify-content-md-center">
           <div class='col-md-auto'>
             {% if profile.image %}
-              <img  src="{{ profile.schedule_image.url }}"  alt="{{profile.name}}" width="700" height="200">
+              <img  src="{{ profile.image.url }}"  alt="{{profile.name}}" width="700" height="200">
             {% endif %}
           </div>
           <div class='col-md-auto'>
@@ -85,7 +85,7 @@
 
       <div class='container'>
         <div class='row justify-content-md-center'>
-            <img  src="{{ user.profile.schedule_image.url }}"  alt="{{user.profile.name}}" width="auto" height="auto">
+            <img  src="{{ profile.schedule_image.url }}"  alt="{{user.profile.name}}" width="auto" height="auto">
           {% endif %}
           </div>
         </div>
