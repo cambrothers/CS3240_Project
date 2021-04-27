@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'w&qb8&2)v+9er899jx+@5kkvz*__6yt2)u1ddgz+&!ag=3)^^$'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = []
 
@@ -152,7 +152,7 @@ django_heroku.settings(locals()) # , test_runner=False)
  #   found = False
 
 #To work locally SITE_ID should be 2. Althought it was 1 before changing it for local editing.
-SITE_ID = 3
+SITE_ID = 2
 LOGIN_REDIRECT_URL = 'profile'
 
 SOCIALACCOUNT_PROVIDERS = {

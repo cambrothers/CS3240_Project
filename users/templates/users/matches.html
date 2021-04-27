@@ -61,22 +61,21 @@
     <hr/>
 
     <div class='container'>
-    {% for user1, score in user_list.items %}
+    {% for user1,s in user_list.items %}
       <tr>
-        {% for s in score %}
-          {% if s != currentUser %}
+       
           
           <h2><a href="{% url 'profile_detail' user1.profile.id %}">{{ user1 }}</a> Compatibility Score {{s}}/65</h2>
           <p>{{ user1.profile.age }} years old | Year {{ user1.profile.year }} | {{ user1.profile.school }} | Looking for {{ user1.profile.roomates }} roommates</p>
             
-          {% endif %}
+         
         {% endfor %}
       
         {% for questionnaire in Questionnaire.objects.all %}
           {{questionnaire.user}}
         {% endfor %}
     </tr>
-    {% endfor %}
+   
 {% endblock content %}
     </div>
 

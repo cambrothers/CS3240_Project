@@ -394,12 +394,20 @@ def matching_set():
 
                 # Joshua Dano - 4/12/21 - Saving matches in a dataset
                 #matching_points = 10
-                matches[u] = [v, matching_points]
+                if u not in matches:
+                    print("user is not in matches!")
+                    matches[u] =[]
+                    matches[u].append([v, matching_points])
+                    print(matches[u])
+                    print(u)
+                else:
+                    print("user is in matches!")
+                    matches[u].append([v, matching_points])
                 matching_points = 0
-                print("v", v)
+            #    print("v", v)
     
     #matches won't display as a context do not know why.
-    #print(matches)
+    print(matches)
     #print('--------------Now Printing All()--------------')
     #print(User.objects.all())
     #matches = sorted(matches.items(), key=matches.values()[1])

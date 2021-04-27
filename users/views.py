@@ -39,7 +39,7 @@ def friends(request):
         p = Profile.objects.get(user=request.user)
         print("P is: "+str(p))
         d = User.objects.get(username=data)
-        p.requests.add(d)
+        #p.requests.add(d)
         d.profile.requests.add(request.user)
         #context['data'] = data
         print(data)
@@ -62,12 +62,16 @@ def friend_req(request):
         a = dec_form.cleaned_data["answer"]
         p = Profile.objects.get(user=request.user)
         print("P is: "+str(p))
-        d = User.objects.get(username=u)
+        try:
+         d = User.objects.get(username=u)
+        except User.DoesNotExist:
+         d = None
         if a == 'ACCEPT':
-            p.friends.add(d)
-            p.requests.remove(d)
-            d.profile.friends.add(request.user)
-            d.profile.requests.remove(request.user)
+            if d != None:
+                p.friends.add(d)
+                p.requests.remove(d)
+                d.profile.friends.add(request.user)
+            #d.profile.requests.remove(request.user)
             #context['data'] = u
             print(u)
     return render(request, 'users/friend_requests.html', context)
@@ -160,24 +164,27 @@ def matchesList(request):
     
     #Must return a dictionary of users to users.
     user_list = matching_set()
-    
+    print("user_list:")
+    print(user_list)
     instance=request.user
 
-    myMatches = {}
+    my_matches = {}
 
     #To change to top 3 just do a count and stop at top 3.
-    for user in user_list:
-        if(user_list[user][0] == instance):
-            myMatches[user] = user_list[user]
+    for user, user_l in user_list.items():
+        print(user)
+        for u in user_l:
+            if(u[0] == instance):
+             my_matches[user] = u[1]
 
     #print("User_List")
     #print(user_list)
     print("My matches:")
-    print(myMatches)
+    print(my_matches)
 
     #myMatches = sorted(myMatches, key=myMatches.get, reverse = True)
     
-    context = {'user_list': myMatches, 'currentUser': instance}
+    context = {'user_list': my_matches, 'currentUser': instance}
     #context = {'user_list': myMatches}
 
     print()
