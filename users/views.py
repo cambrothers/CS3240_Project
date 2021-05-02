@@ -1,4 +1,3 @@
-
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
@@ -183,9 +182,11 @@ def matchesList(request):
     print("My matches:")
     print(my_matches)
 
-    my_matches = sorted(my_matches, key=my_matches.get, reverse = True)
-    
-    context = {'user_list': my_matches, 'currentUser': instance}
+    my_matches = dict(sorted(my_matches.items(), key=lambda item: item[1], reverse = True))
+    print(my_matches)
+
+   # print(type(my_matches))
+    context = {'matches': my_matches, 'currentUser': instance}
     #context = {'user_list': myMatches}
 
     print()
