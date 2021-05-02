@@ -1,3 +1,4 @@
+
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
@@ -182,7 +183,7 @@ def matchesList(request):
     print("My matches:")
     print(my_matches)
 
-    #myMatches = sorted(myMatches, key=myMatches.get, reverse = True)
+    my_matches = sorted(my_matches, key=my_matches.get, reverse = True)
     
     context = {'user_list': my_matches, 'currentUser': instance}
     #context = {'user_list': myMatches}
@@ -201,17 +202,13 @@ def matchesList(request):
 '''
 class MatchesListView(ListView):
     from .models import matching_set #, find_best_match
-
     model = Profile
     context_object_name = 'profile_list'
     template_name = 'users/matches.html'
-
     #matches = matching_set(model)
     #top3 = find_best_match(model, matches)
-
     def get__queryset(self):
         return Profile.objects.all()
-
 '''
 
 
@@ -231,6 +228,4 @@ class ProfileDetailView(DetailView):
 '''
     def get_queryset(self):
         return Profile.objects.all()
-
 '''
-
