@@ -1,36 +1,4 @@
-Skip to content
-Search or jump to…
 
-Pull requests
-Issues
-Marketplace
-Explore
- 
-@JulietteLaburthe 
-uva-cs3240-s21
-/
-project-a-20
-Private
-1
-00
-Code
-Issues
-Pull requests
-3
-Actions
-Projects
-Wiki
-Security
-Insights
-Settings
-project-a-20/users/views.py /
-@JulietteLaburthe
-JulietteLaburthe changes to friends and matching algo
-Latest commit 21d9b7c 5 days ago
- History
- 1 contributor
-236 lines (188 sloc)  7.13 KB
-  
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
