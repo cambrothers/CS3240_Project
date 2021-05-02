@@ -67,7 +67,7 @@ def friend_req(request):
         except User.DoesNotExist:
          d = None
         if a == 'ACCEPT':
-            if d != None:
+            if d != None and p in d.profile.get_requests():
                 p.friends.add(d)
                 p.requests.remove(d)
                 d.profile.friends.add(request.user)
