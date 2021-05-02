@@ -1,3 +1,36 @@
+Skip to content
+Search or jump to…
+
+Pull requests
+Issues
+Marketplace
+Explore
+ 
+@JulietteLaburthe 
+uva-cs3240-s21
+/
+project-a-20
+Private
+1
+00
+Code
+Issues
+Pull requests
+3
+Actions
+Projects
+Wiki
+Security
+Insights
+Settings
+project-a-20/users/views.py /
+@JulietteLaburthe
+JulietteLaburthe changes to friends and matching algo
+Latest commit 21d9b7c 5 days ago
+ History
+ 1 contributor
+236 lines (188 sloc)  7.13 KB
+  
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
@@ -182,7 +215,7 @@ def matchesList(request):
     print("My matches:")
     print(my_matches)
 
-    #myMatches = sorted(myMatches, key=myMatches.get, reverse = True)
+    my_matches = sorted(my_matches, key=my_matches.get, reverse = True)
     
     context = {'user_list': my_matches, 'currentUser': instance}
     #context = {'user_list': myMatches}
@@ -201,17 +234,13 @@ def matchesList(request):
 '''
 class MatchesListView(ListView):
     from .models import matching_set #, find_best_match
-
     model = Profile
     context_object_name = 'profile_list'
     template_name = 'users/matches.html'
-
     #matches = matching_set(model)
     #top3 = find_best_match(model, matches)
-
     def get__queryset(self):
         return Profile.objects.all()
-
 '''
 
 
@@ -231,6 +260,4 @@ class ProfileDetailView(DetailView):
 '''
     def get_queryset(self):
         return Profile.objects.all()
-
 '''
-
