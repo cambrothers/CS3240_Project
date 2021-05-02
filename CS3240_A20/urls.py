@@ -34,7 +34,7 @@ urlpatterns = [
     path('profile/matches/<int:pk>/', ProfileDetailView.as_view(), name='profile_detail'),
     #Juliette - new urls and views for discussion thread and friends
     path('discussions/' , DiscussionView.as_view() ,name="discussions"),
-    path('discussions/thread-<slug:slug>/', DiscussionDetail.as_view(),name='discussions_detail'),
+    path('discussions/thread-<int:pk>/', DiscussionDetail.as_view(),name='discussions_detail'),
     path('discussions/new/', DiscussionCreate.as_view(),name='discussions_create'),
     path('profile/friends', users_views.friends,name='friends_list'),
     path('profile/friends/add',FriendCreate.as_view(),name='friends_list_new'),

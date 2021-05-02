@@ -62,12 +62,15 @@ def friend_req(request):
         a = dec_form.cleaned_data["answer"]
         p = Profile.objects.get(user=request.user)
         print("P is: "+str(p))
+       
         try:
          d = User.objects.get(username=u)
         except User.DoesNotExist:
          d = None
+        print(d.profile.get_requests())
         if a == 'ACCEPT':
             if d != None and p in d.profile.get_requests():
+                prin
                 p.friends.add(d)
                 p.requests.remove(d)
                 d.profile.friends.add(request.user)

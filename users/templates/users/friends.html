@@ -83,6 +83,7 @@
     <div class='col'>
       <h3>Other Users </h3>
       {% for profile in all_profiles %}
+      
         {% if not profile.user in user.profile.get_friends and not user in profile.get_friends %}
           {% if not profile.user == user and not profile.user.is_superuser == True  %}
             <p><a href="{% url 'profile_detail' profile.id %}">{{profile.name}} ({{profile.user}})</a></p>
