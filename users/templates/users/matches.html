@@ -40,6 +40,9 @@
             <a class="nav-link" href="{% url 'profile' %}">Profile</a>
           </li>
           <li class="nav-item">
+            <a class="nav-link" href="{% url 'questionnaire' %}" aria-disabled="true">Questionnaire</a>
+          </li>
+          <li class="nav-item">
               <a class="nav-link" href="{% url 'matches' %}">Matches</a>
           </li>
           <li class="nav-item">
@@ -56,8 +59,18 @@
     </nav>
     <center>
       <h1>Your Matches</h1>
-      <p>Click on a profile to learn more about them! Please make sure your <a href="{% url 'questionnaire' %}">questionnaire</a> is up-to-date to ensure accurate scores! </p>
     </center>
+    <div class='container'>
+      <div class="row justify-content-md-center">
+        <p>Welcome to the Matches! Please make sure you have completed the first two steps of the following instructions BEFORE matching!</p>
+        <ol>
+          <li>Click on "Profile" to update your username, pronouns, and about me to give other user's the most information about you!</li>
+          <li>Take the "Questionnaire" to answer what you're looking for in a roommate and how you are as a roommate.</li>
+          <li>See every user and their compatibility with you on the "Matches" page.</li>
+          <li>Send a friend request to your top matches to find their social media usernames on the "Friends" tab.</li>
+        </ol>
+      </div>
+    </div>
     <hr/>
 
     <div class='container'>
