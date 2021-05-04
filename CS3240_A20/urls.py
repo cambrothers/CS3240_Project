@@ -29,6 +29,7 @@ urlpatterns = [
     # Juliette - 4.8.2021 - New Views
     path('questionnaire/', users_views.questionnaire, name='questionnaire'),
     path('questionnaire_done/', TemplateView.as_view(template_name='users/questionnaire_done.html'),name='qd'),
+    path('logout/', TemplateView.as_view(template_name='users/logout.html'), name='logout'),
     
     path('profile/matches/', users_views.matchesList, name='matches'),  
     path('profile/matches/<int:pk>/', ProfileDetailView.as_view(), name='profile_detail'),
