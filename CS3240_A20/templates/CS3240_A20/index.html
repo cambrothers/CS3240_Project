@@ -22,6 +22,9 @@
                   <a class="nav-link" href="{% url 'profile' %}" aria-disabled="true">Profile</a>
                 </li>
                 <li class="nav-item">
+                  <a class="nav-link" href="{% url 'questionnaire' %}" aria-disabled="true">Questionnaire</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" href="{% url 'matches' %}">Matches</a>
                 </li>
                 <li class="nav-item">
@@ -43,6 +46,9 @@
                 <a class="nav-link" href="{% provider_login_url 'google' %}" aria-disabled="true">Profile</a>
               </li>
               <li class="nav-item">
+                <a class="nav-link" href="{% provider_login_url 'google' %}" aria-disabled="true">Questionnaire</a>
+              </li>
+              <li class="nav-item">
                   <a class="nav-link" href="{% provider_login_url 'google' %}">Matches</a>
               </li>
               <li class="nav-item">
@@ -59,10 +65,18 @@
       </nav>
 
       {% if user.is_authenticated %}
-      <center>
-        <h1>UVA Roommate Finder</h1>
-        <p>Below are some of your profile details!</p>
-      </center>
+        <center><h1>UVA Roommate Finder</h1></center>
+        <div class='container'>
+          <div class="row justify-content-md-center">
+            <p>Here are the details of your profile. Now that you're signed in, follow the following instructions to find your perfect roommate!</p>
+            <ol>
+              <li>Click on "Profile" to update your username, pronouns, and about me to give other user's the most information about you!</li>
+              <li>Take the "Questionnaire" to answer what you're looking for in a roommate and how you are as a roommate.</li>
+              <li>See every user and their compatibility with you on the "Matches" page.</li>
+              <li>Send a friend request to your top matches to find their social media usernames on the "Friends" tab.</li>
+            </ol>
+          </div>
+        </div>
       <hr/>
       <div class='container'>
         <div class="row justify-content-md-center">
@@ -98,10 +112,19 @@
         </div>
       </div>
       {% else %}
-      <center>
-        <h1>Welcome to UVA Roommate Finder!</h1>
-        <p>Please <a href="{% provider_login_url 'google' %}">log in with Google</a> before using our site!</p>
-      </center>
+        <center><h1>UVA Roommate Finder!</h1></center>
+        <div class='container'>
+          <div class='row justify-content-md-center'>
+            <p>Welcome to UVA Roommate Finder, where you can find the perfect roommate with little- to no hardwork! Please <a href="{% provider_login_url 'google' %}">log in with Google</a> before using our site!</p>
+            <p>Once you're signed in, there are only four steps to finding the perfect roommate!</p>
+            <ol>
+              <li>Click on "Profile" to update your username, pronouns, and about me to give other user's the most information about you!</li>
+              <li>Take the "Questionnaire" to answer what you're looking for in a roommate and how you are as a roommate.</li>
+              <li>See every user and their compatibility with you on the "Matches" page.</li>
+              <li>Send a friend request to your top matches to find their social media usernames on the "Friends" tab.</li>
+            </ol>
+          </div>
+        </div>
       {% endif %}
     </body>
 </html>
