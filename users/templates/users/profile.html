@@ -74,11 +74,16 @@
               {{ up_form|crispy }}
           </fieldset>
           <div class="form-group">
-              <button class="btn btn-outline-info" type="submit">Update</button>
+              <button class="btn btn-outline-info" type="submit" onclick='popup()'>Update</button>
           </div>
       </form>
     </div>
   </div>
  
+  <script>
+    function popup() {
+      alert("Changes to Profile have been saved!")
+    }
+  </script>
 
 {% endblock content %}
