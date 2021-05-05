@@ -166,6 +166,17 @@ SOCIALACCOUNT_PROVIDERS = {
         }
     }
 }
+
+'''
+Title : Heroku Django store your uploaded media files for free
+Author:  Shahraiz Ali
+Date: October 22 , 2019
+Code version: n/a
+URL: https://www.dothedev.com/blog/heroku-django-store-your-uploaded-media-files-for-free/
+Software License: n/a
+** used the tutorial and code snippets in them to change settings to allow images to upload to our Cloudinary account ** 
+
+'''
 CLOUDINARY_STORAGE = {
     'CLOUD_NAME': 'hywygw5dj',
     'API_KEY': '272347195842429',

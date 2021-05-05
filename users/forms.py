@@ -1,7 +1,23 @@
 from django import forms
 from django.contrib.auth.models import User
 from .models import DiscussionThread, Profile , Questionnaire
+'''
+Title:Django form - set label
+Author: Xbito
+Date: March 12, 2009
+Code Version: n/a
+URL: https://stackoverflow.com/questions/636905/django-form-set-label 
+Software License: n/a
+** used this to see how to set labels to our forms**
 
+Title: Django Tutorials Playlist
+Author: Corey Schafer
+Date: March 6 , 2018
+Code version: n/a
+URL: https://www.youtube.com/playlist?list=PL-osiE80TeTtoQCKZ03TU5fNfx2UY6U4p 
+Software License: n/a
+** used the tutorial to understand how forms work, then built other forms for other models in the project**
+'''
 
 class UserUpdateForm(forms.ModelForm):
     class Meta:
@@ -54,12 +70,43 @@ class QuestionnaireForm(forms.ModelForm):
             'gender': 'Would you be okay with roomming with somebody of another gender?',
             'year': 'Do you only want roommates that are the same year as you?'
         }
+'''
+Title: Create a Simple Django Blog
+Author: Codemy.com
+Date: Aug 27,2020
+Code Version: n/a
+URL: https://www.youtube.com/watch?v=J7xaESAddDQ
+Software License:n/a
+** watched part of this series to understand how we can use forms to create new objects of models. **
+
+'''
 
 class DiscussionForm(forms.ModelForm):
     class Meta:
         model = DiscussionThread
         fields = ['title','description']
 #Juliette - added forms for sending friend request and accepting/denying
+'''
+
+Title: ChoiceField – Django Forms
+Author: NaveenArora
+Date: February 13 , 2020
+Code Version: n/a
+URL: https://www.geeksforgeeks.org/choicefield-django-forms/ 
+Software License: n/a
+
+**referenced this tutorial to be able to make forms to friend request/ accept users
+
+Title:How to append elements in Python tuple?
+Author: Malhar Lathkar
+Date: January 15,2018
+Code Version: n/a
+URL: https://www.tutorialspoint.com/How-to-append-elements-in-Python-tuple#:~:text=First%2C%20convert%20tuple%20to%20list,list%20object%20back%20to%20tuple.&text=You%20can%20see%20new%20element%20appended%20to%20original%20tuple%20representation. 
+Software License: n/a
+** also referenced this to see how to append tuples in python
+
+
+'''
 class RequestFriendForm(forms.Form):
     CHOICES = ()
  
