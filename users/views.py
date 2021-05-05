@@ -39,8 +39,10 @@ def friends(request):
         p = Profile.objects.get(user=request.user)
         print("P is: "+str(p))
         d = User.objects.get(username=data)
-        #p.requests.add(d)
-        d.profile.requests.add(request.user)
+        #p.add_request(d)
+        d.profile.add_request(request.user)
+        print(p.requests)
+        print(d.profile.requests.all())
         #context['data'] = data
         print(data)
     return render(request, 'users/friends.html', context)
@@ -63,17 +65,18 @@ def friend_req(request):
         p = Profile.objects.get(user=request.user)
         print("P is: "+str(p))
        
-        try:
-         d = User.objects.get(username=u)
-        except User.DoesNotExist:
-         d = None
-        print(d.profile.get_requests())
+        
+        d = User.objects.get(username=u)
+        print("D is: "+str(d))
+        #print(d.profile.requests.all())
         if a == 'ACCEPT':
-            if d != None and p in d.profile.get_requests():
-                prin
+            if d != None :
+                print(str(d.profile.requests.all()))
                 p.friends.add(d)
+                print("Friend added: "+str(p.friends.all()))
                 p.requests.remove(d)
-                d.profile.friends.add(request.user)
+                d.profile.friends.add(p.user)
+                print(d.profile.get_friends())
             #d.profile.requests.remove(request.user)
             #context['data'] = u
             print(u)
