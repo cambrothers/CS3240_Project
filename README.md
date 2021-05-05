@@ -10,3 +10,4 @@ Once you're signed in, there are only four steps to finding the perfect roommate
 2. Take the "Questionnaire" to answer what you're looking for in a roommate and how you are as a roommate.
 3. See every user and their compatibility with you on the "Matches" page.
 4. Send a friend request to your top matches to find their social media usernames on the "Friends" tab.
+5. Use the "Discussions" tab to create threads of requests you may have regarding subleases, roommates etc. You can also use our Disqus comment section to get in touch and add users as friends!
