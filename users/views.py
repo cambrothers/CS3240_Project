@@ -70,7 +70,7 @@ def friend_req(request):
         print("D is: "+str(d))
         #print(d.profile.requests.all())
         if a == 'ACCEPT':
-            if d != None :
+            if d != None and p in d.profile.requests.all():
                 print(str(d.profile.requests.all()))
                 p.friends.add(d)
                 print("Friend added: "+str(p.friends.all()))
