@@ -10,7 +10,7 @@
 </head>
 <div class="media-body">
   <nav class="navbar navbar-expand-lg navbar-light bg-warning">
-      <a class="navbar-brand" href="#">Roommate Finder</a>
+      <a class="navbar-brand" href="{% url 'home' %}">Roommate Finder</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -24,6 +24,9 @@
             <a class="nav-link" href="{% url 'profile' %}">Profile</a>
           </li>
           <li class="nav-item">
+            <a class="nav-link" href="{% url 'questionnaire' %}" aria-disabled="true">Questionnaire</a>
+          </li>
+          <li class="nav-item">
               <a class="nav-link" href="{% url 'matches' %}">Matches</a>
           </li>
           <li class="nav-item">
@@ -34,27 +37,32 @@
       </li>
 
         </ul>
-        Hi, {{user.username}}! (<a href='/accounts/logout'>sign out</a>)
+        Hi, {{user.username}}! (<a href="{% url 'logout' %}">sign out</a>)
         
       </div>
     </nav>
 <br>
 <br>
-<h3>Pending friend requests:</h3>
-{% for profile in all_profiles %}
-{% if  profile.user in user.profile.get_requests %}
-<p>User: {{profile.user}} | Name: {{profile.name}}</p>
-<br>
-<br>
-{% endif %}
-{% endfor %}
-<form method="POST" >
-    {% csrf_token %}
-    
-    {{ dec_form|crispy }}
-    
-    <button name="data" class="btn btn-outline-info" type="submit">Send</button>
-    </form>
-
-
+<center>
+  <h1>Accept Friend Requests</h1>
+</center>
+<hr/>
+<div class='container'>
+  <h3>Pending friend requests:</h3>
+  {% for profile in all_profiles %}
+    {% if profile.user in user.profile.get_requests %}
+    <p>User: {{profile.user}} | Name: {{profile.name}}</p>
+    <br>
+   <br>
+    {% endif %}
+  {% endfor %}
+  <form method="POST" >
+      {% csrf_token %}
+      
+      {{ dec_form|crispy }}
+      
+      <button name="data" class="btn btn-outline-info" type="submit">Send</button>
+      </form>
+  
+</div>
 {%endblock%}

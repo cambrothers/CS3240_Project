@@ -8,7 +8,7 @@
       </head>
       <div class="media-body">
         <nav class="navbar navbar-expand-lg navbar-light bg-warning">
-            <a class="navbar-brand" href="#">Roommate Finder</a>
+            <a class="navbar-brand" href="{% url 'home' %}">Roommate Finder</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
             </button>
@@ -22,6 +22,9 @@
                   <a class="nav-link" href="{% url 'profile' %}">Profile</a>
                 </li>
                 <li class="nav-item">
+                  <a class="nav-link" href="{% url 'questionnaire' %}" aria-disabled="true">Questionnaire</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" href="{% url 'matches' %}">Matches</a>
                 </li>
                 <li class="nav-item">
@@ -32,35 +35,17 @@
             </li>
       
               </ul>
-              Hi, {{user.username}}! (<a href='/accounts/logout'>sign out</a>)
+              Hi, {{user.username}}! (<a href="{% url 'logout' %}">sign out</a>)
               
             </div>
           </nav>
-<h4>Title of this Thread :</h1><p>  {{discussionthread.title}}</p>
-    
-<h4>Description of Thread:</h3>
-    <p>  {{discussionthread.description}}</p>
-<h4>Author of Thread:</h4>
-    <p>  {{discussionthread.author}}</p>
-<h3>--------------------------------------------------</h3>
+          <center>
+            <h1>{{discussionthread.title}}</h1>
+            <p>Thread created by {{discussionthread.author}}</p>
+          </center>
+          <hr/>
+          <div class='container'>        
+                <p>Description: {{discussionthread.description}}</p>
+                <hr/>
 
-<div id="disqus_thread"></div>
-<script>
 
-/**
-*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
-*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
-
-var disqus_config = function () {
-this.page.url = "http://127.0.0.1:8000/discussions/<pk:id>/";  // Replace PAGE_URL with your page's canonical URL variable
-this.page.identifier = "<pk:id>"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
-};
-
-(function() { // DON'T EDIT BELOW THIS LINE
-var d = document, s = d.createElement('script');
-s.src = 'https://cs-3240-a20.disqus.com/embed.js';
-s.setAttribute('data-timestamp', +new Date());
-(d.head || d.body).appendChild(s);
-})();
-</script>
-<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>

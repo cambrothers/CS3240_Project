@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'w&qb8&2)v+9er899jx+@5kkvz*__6yt2)u1ddgz+&!ag=3)^^$'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = []
 
@@ -147,7 +147,7 @@ MEDIA_URL = '/media/'
     #    django_heroku.settings(locals())
     # Configure Django App for Heroku.  commented out to see if above code works for travis build
 import django_heroku
-django_heroku.settings(locals(), test_runner=False)
+django_heroku.settings(locals()) # , test_runner=False)
 #except ImportError:
  #   found = False
 
@@ -166,6 +166,17 @@ SOCIALACCOUNT_PROVIDERS = {
         }
     }
 }
+
+'''
+Title : Heroku Django store your uploaded media files for free
+Author:  Shahraiz Ali
+Date: October 22 , 2019
+Code version: n/a
+URL: https://www.dothedev.com/blog/heroku-django-store-your-uploaded-media-files-for-free/
+Software License: n/a
+** used the tutorial and code snippets in them to change settings to allow images to upload to our Cloudinary account ** 
+
+'''
 CLOUDINARY_STORAGE = {
     'CLOUD_NAME': 'hywygw5dj',
     'API_KEY': '272347195842429',

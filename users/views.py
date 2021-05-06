@@ -39,8 +39,10 @@ def friends(request):
         p = Profile.objects.get(user=request.user)
         print("P is: "+str(p))
         d = User.objects.get(username=data)
-        p.requests.add(d)
-        d.profile.requests.add(request.user)
+        #p.add_request(d)
+        d.profile.add_request(request.user)
+        print(p.requests)
+        print(d.profile.requests.all())
         #context['data'] = data
         print(data)
     return render(request, 'users/friends.html', context)
@@ -62,12 +64,20 @@ def friend_req(request):
         a = dec_form.cleaned_data["answer"]
         p = Profile.objects.get(user=request.user)
         print("P is: "+str(p))
+       
+        
         d = User.objects.get(username=u)
+        print("D is: "+str(d))
+        #print(d.profile.requests.all())
         if a == 'ACCEPT':
-            p.friends.add(d)
-            p.requests.remove(d)
-            d.profile.friends.add(request.user)
-            d.profile.requests.remove(request.user)
+            if d != None and p in d.profile.requests.all():
+                print(str(d.profile.requests.all()))
+                p.friends.add(d)
+                print("Friend added: "+str(p.friends.all()))
+                p.requests.remove(d)
+                d.profile.friends.add(p.user)
+                print(d.profile.get_friends())
+            #d.profile.requests.remove(request.user)
             #context['data'] = u
             print(u)
     return render(request, 'users/friend_requests.html', context)
@@ -79,9 +89,18 @@ class FriendCreate(CreateView):
         form.instance.user = self.request.user
         return redirect('friend_req')
 # Create your views here.
+
+'''
+Title : CoreyMShafer - GitHub
+Author: Corey Schafer
+Date: August 31 , 2018
+Code version: n/a
+URL: https://github.com/CoreyMSchafer/code_snippets/blob/master/Django_Blog/09-Update-User-Profile/django_project/users/views.py
+Software License: n/a
+** Used the first part of creating the profile, but added a second part that creates a profile object for a user if they currently do not have one.**
+
+'''
 @login_required
-
-
 def profile(request):
    if hasattr(request.user,'profile'):
     if request.method == 'POST':
@@ -160,24 +179,39 @@ def matchesList(request):
     
     #Must return a dictionary of users to users.
     user_list = matching_set()
-    
+    print("user_list:")
+    print(user_list)
     instance=request.user
 
-    myMatches = {}
+    my_matches = {}
 
     #To change to top 3 just do a count and stop at top 3.
-    for user in user_list:
-        if(user_list[user][0] == instance):
-            myMatches[user] = user_list[user]
+    for user, user_l in user_list.items():
+        print(user)
+        for u in user_l:
+            if(u[0] == instance):
+             my_matches[user] = u[1]
 
     #print("User_List")
     #print(user_list)
     print("My matches:")
-    print(myMatches)
+    print(my_matches)
 
-    #myMatches = sorted(myMatches, key=myMatches.get, reverse = True)
-    
-    context = {'user_list': myMatches, 'currentUser': instance}
+    my_matches = dict(sorted(my_matches.items(), key=lambda item: item[1], reverse = True))
+    print(my_matches)
+ 
+    '''
+   Title: How do I sort a dictionary by value?
+Author: Devin Jeanpierre and wjandrea
+Date: March 5, 2009
+Code Verison: n/a
+URL: https://stackoverflow.com/questions/613183/how-do-i-sort-a-dictionary-by-value 
+Software License: n/a
+** used to sort matches from best to worst**
+   '''
+   
+   # print(type(my_matches))
+    context = {'matches': my_matches, 'currentUser': instance}
     #context = {'user_list': myMatches}
 
     print()
@@ -191,21 +225,7 @@ def matchesList(request):
 
     
 
-'''
-class MatchesListView(ListView):
-    from .models import matching_set #, find_best_match
 
-    model = Profile
-    context_object_name = 'profile_list'
-    template_name = 'users/matches.html'
-
-    #matches = matching_set(model)
-    #top3 = find_best_match(model, matches)
-
-    def get__queryset(self):
-        return Profile.objects.all()
-
-'''
 
 
 
@@ -220,10 +240,3 @@ class ProfileDetailView(DetailView):
 
 
    
-
-'''
-    def get_queryset(self):
-        return Profile.objects.all()
-
-'''
-

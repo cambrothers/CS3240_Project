@@ -4,29 +4,13 @@
 
 <!-- Returning a dictionary in the template does not display anything -->
 <!-- Returning a dictionary in the template does not display anything -->
-<script>
-  function end(year) {
-    if (year == '1') {
-      return 'st';
-    }
-    else if (year == '2') {
-      return 'nd';
-    }
-    else if (year == '3') {
-      return 'rd';
-    }
-    else if (year == '4') {
-      return 'th';
-    }
-  }
-</script>
 
 <head>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 <div class="media-body">
   <nav class="navbar navbar-expand-lg navbar-light bg-warning">
-      <a class="navbar-brand" href="#">Roommate Finder</a>
+      <a class="navbar-brand" href="{% url 'home' %}">Roommate Finder</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -40,6 +24,9 @@
             <a class="nav-link" href="{% url 'profile' %}">Profile</a>
           </li>
           <li class="nav-item">
+            <a class="nav-link" href="{% url 'questionnaire' %}" aria-disabled="true">Questionnaire</a>
+          </li>
+          <li class="nav-item">
               <a class="nav-link" href="{% url 'matches' %}">Matches</a>
           </li>
           <li class="nav-item">
@@ -50,35 +37,62 @@
       </li>
 
         </ul>
-        Hi, {{user.username}}! (<a href='/accounts/logout'>sign out</a>)
+        Hi, {{user.username}}! (<a href="{% url 'logout' %}">sign out</a>)
         
       </div>
     </nav>
     <center>
       <h1>Your Matches</h1>
-      <p>Click on a profile to learn more about them!</p>
     </center>
+    <div class='container'>
+      <div class="row justify-content-md-center">
+        <p>Welcome to the Matches! Please make sure you have completed the first two steps of the following instructions BEFORE matching!</p>
+        <ol>
+          <li>Click on "Profile" to update your username, pronouns, and about me to give other user's the most information about you!</li>
+          <li>Take the "Questionnaire" to answer what you're looking for in a roommate and how you are as a roommate.</li>
+          <li>See every user and their compatibility with you on the "Matches" page.</li>
+          <li>Send a friend request to your top matches to find their social media usernames on the "Friends" tab.</li>
+          <li>Once you and another user are friends, you will be able to see their contact information and phone number. Contact them to become roommates!</li>
+
+        </ol>
+      </div>
+    </div>
     <hr/>
 
     <div class='container'>
-    {% for user1, score in user_list.items %}
-
+    {% for user1,s in matches.items %}
+    
       <tr>
-        {% for s in score %}
-          {% if s != currentUser %}
+       
           
-          <h2><a href="{% url 'profile_detail' user1.profile.id %}">{{ user1 }}</a> Compatibility Score {{s}}/65</h2>
+          <h2><a href="{% url 'profile_detail' user1.profile.id %}">{{ user1 }}</a> | Compatibility Score: <span id='score'>{{s}}/65</span></h2>
           <p>{{ user1.profile.age }} years old | Year {{ user1.profile.year }} | {{ user1.profile.school }} | Looking for {{ user1.profile.roomates }} roommates</p>
             
-          {% endif %}
+         
         {% endfor %}
       
         {% for questionnaire in Questionnaire.objects.all %}
           {{questionnaire.user}}
         {% endfor %}
     </tr>
-    {% endfor %}
-    
+   
 {% endblock content %}
     </div>
+
+    <script>
+      function score_color() {
+        var scores = document.getElementsById('score');
+        for (var i = 0; i < scores.length; i++) {
+          if (scores[i] >= 20) {
+            scores[i].style.color = 'red';
+          }
+          else if (scores[i] >= 40) {
+            scores[i].style.color = 'yellow';
+          }
+          else {
+            scores[i].style.color = 'green';
+          };
+
+      score_color();
+    </script>
 

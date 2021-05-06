@@ -8,7 +8,7 @@
       </head>
       <div class="media-body">
         <nav class="navbar navbar-expand-lg navbar-light bg-warning">
-            <a class="navbar-brand" href="#">Roommate Finder</a>
+            <a class="navbar-brand" href="{% url 'home' %}">Roommate Finder</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
             </button>
@@ -22,6 +22,9 @@
                   <a class="nav-link" href="{% url 'profile' %}">Profile</a>
                 </li>
                 <li class="nav-item">
+                  <a class="nav-link" href="{% url 'questionnaire' %}" aria-disabled="true">Questionnaire</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" href="{% url 'matches' %}">Matches</a>
                 </li>
                 <li class="nav-item">
@@ -32,45 +35,87 @@
             </li>
       
               </ul>
-              Hi, {{user.username}}! (<a href='/accounts/logout'>sign out</a>)
+              Hi, {{user.username}}! (<a href="{% url 'logout' %}">sign out</a>)
               
             </div>
           </nav>
           <center>
-<h2>WELCOME TO THE DISCUSSION BOARD!</h2>
-</center>
-<br>
-<br>
+            <h1>Discussion Board</h1>
+            <p>Please read the following rules on how to use the discussion board!</p>
+          </center>
+          <hr/>
+          <div class='container'>
+            <div class='row justify-content-md-center'>
+              <br>
+              <br>
+              
+              <body>
+                  <h4>Here, you can chat with other users about housing-related topics such as subleasing, last-minute roomate searches, etc.</h4>
+                  <h4>RULES:</h4>
+                 <ul>
+                  <li>Do not use any  inappropriate language. Any sort of hateful language will result in an automatic deletion of you account.</li>
+                  <li>Please keep the topics relevent to threads that have been posted.</li>
+                  <li> Purposeful spamming of comments/ blowing up the feed will cause for your posts to be deleted. </li>
+                 </ul>
+                 <h3>HOW TO USE DISQUS:</h3>
+                 <center>
+                 <h4>***Disqus is a comment thread that can be accessed by clicking the hyperlink to each thread title below. ***</h4>
+                 </center>
+                 <ul>
+                  <li>To see the description/ more information about a specific thread post, click on the post title and you will be redirected towards more information.</li>
+                  <li>If you want to add any comments or followups, there is a comment thread that all users can use if the create/login to their Disqus account.</li>
+                  <li>From there, hit reply on the discussion and type your message below. </li>
+                 </ul>
+                 <h4><a href="{% url 'discussions_create'%}">Click here to create a new thread!</a></h4>
+                 </div>
+                 <center><h3>THREADS:</h3></center>
+              <ul>
+                 {% for d in object_list %}
+                 
+               
+                     <li> <a href="{%url 'discussions_detail' d.pk %}">{{d.title}} </a><br/>
+                     </li>
+                     
+                 {% endfor %}    
+              </ul>
+              </body>
+<!--
 
-<body>
-    <h4>Here, you can chat with other users about housing-related topics such as subleasing, last-minute roomate searches, etc.</h4>
-    <h4>RULES:</h4>
-   <ul>
-    <li>Do not use any innapropriate language. Any sort of hateful language will result in an automatic deletion of you account.</li>
-    <li>Please keep the topics relavent to the original user's post/request.</li>
-    <li> Purposeful spamming of comments/ blowing up the feed will cause for your posts to be deleted. </li>
-   </ul>
-   <h3>HOW TO USE DISQUS:</h3>
-   <center>
-   <h4>***Disqus is a comment thread that can be accessed by clicking the hyperlink to each thread title below. Please read the instructions below as an author/responder to see how you should use Disqus.***</h4>
-   </center>
-   <ul>
-    <li>If you are the author of a thread, please begin a discussion by entering your username in the "Join the discussion..." text box.</li>
-    <li>If you are someone who wishes to respond to a thread, click on the title. This will redirect you to the thread's details where you should be able to find the authors discussion post with their username.</li>
-    <li>From there, hit reply on the discussion and type your message below. </li>
-   </ul>
-   <h4><a href="{% url 'discussions_create'%}">Click here to create a new thread!</a></h4>
-   <h3>THREADS:</h3>
-<ul>
-   {% for d in object_list %}
-   
- 
-       <li> <a href="{%url 'discussions_detail' d.pk %}">{{d.title}} </a><br/>
-       </li>
+Title: Integrate Disqus Comments with Django
+Author: Raturi Tech Media
+Date: May 27,2019
+Code Version: n/a
+URL:https://raturitechmedia.medium.com/integrate-disqus-comments-with-django-21f206d65c0b 
+Software License:n/a
+** used code snippets from this article which helps integrate disqus onto the webpage so that users can interact with each other.
 
-       
-   {% endfor %}    
-</ul>
-</body>
 
-<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+-->
+              <div id="disqus_thread"></div>
+          <script>
+
+            /**
+            *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+            *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+            
+            var disqus_config = function () {
+            this.page.url = "https://cs3240-a20.herokuapp.com/discussions/";  // Replace PAGE_URL with your page's canonical URL variable
+            this.page.identifier = "/discussions"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+            };
+            
+            (function() { // DON'T EDIT BELOW THIS LINE
+            var d = document, s = d.createElement('script');
+            s.src = 'https://cs-3240-a20.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+            })();
+            </script>
+            <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+            
+
+
+              
+            </div>
+          </div>
