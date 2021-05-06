@@ -4,7 +4,7 @@
 ## Instructions ##
 Visit https://cs3240-a20.herokuapp.com/, where you can find the perfect roommate with little- to no hardwork! Please log in with Google before using our site!
 
-Once you're signed in, there are only four steps to finding the perfect roommate!
+Once you're signed in, there are only five steps to finding the perfect roommate!
 
 1. Click on "Profile" to update your username, pronouns, and about me to give other user's the most information about you!
 2. Take the "Questionnaire" to answer what you're looking for in a roommate and how you are as a roommate.
