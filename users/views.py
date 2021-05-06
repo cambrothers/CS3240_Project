@@ -68,7 +68,7 @@ def friend_req(request):
         
         d = User.objects.get(username=u)
         print("D is: "+str(d))
-        print(str(p.username)+"'s requests: "+ str(p.requests.all()))
+       # print(str(p.username)+"'s requests: "+ str(p.requests.all()))
         if a == 'ACCEPT':
             if d != None and d in p.requests.all():
                 print(str(d.profile.requests.all()))
