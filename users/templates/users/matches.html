@@ -4,22 +4,6 @@
 
 <!-- Returning a dictionary in the template does not display anything -->
 <!-- Returning a dictionary in the template does not display anything -->
-<script>
-  function end(year) {
-    if (year == '1') {
-      return 'st';
-    }
-    else if (year == '2') {
-      return 'nd';
-    }
-    else if (year == '3') {
-      return 'rd';
-    }
-    else if (year == '4') {
-      return 'th';
-    }
-  }
-</script>
 
 <head>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -81,7 +65,7 @@
       <tr>
        
           
-          <h2><a href="{% url 'profile_detail' user1.profile.id %}">{{ user1 }}</a> Compatibility Score {{s}}/65</h2>
+          <h2><a href="{% url 'profile_detail' user1.profile.id %}">{{ user1 }}</a> | Compatibility Score: <span id='score'>{{s}}/65</span></h2>
           <p>{{ user1.profile.age }} years old | Year {{ user1.profile.year }} | {{ user1.profile.school }} | Looking for {{ user1.profile.roomates }} roommates</p>
             
          
@@ -94,4 +78,21 @@
    
 {% endblock content %}
     </div>
+
+    <script>
+      function score_color() {
+        var scores = document.getElementsById('score');
+        for (var i = 0; i < scores.length; i++) {
+          if (scores[i] >= 20) {
+            scores[i].style.color = 'red';
+          }
+          else if (scores[i] >= 40) {
+            scores[i].style.color = 'yellow';
+          }
+          else {
+            scores[i].style.color = 'green';
+          };
+
+      score_color();
+    </script>
 
